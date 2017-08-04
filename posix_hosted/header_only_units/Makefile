@@ -18,7 +18,7 @@ INCLUDE_DIRS = \
 
 # ---------------------------------------- project specific settings ---
 
-CLAGS = -g -MD
+CXXFLAGS = -g -MD
 
 # ------------------------------------------------ derived variables ---
 
