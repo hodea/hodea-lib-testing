@@ -1,5 +1,5 @@
-hdp/hdp.cpp.o: \
- /home/fhol/work/hodea-lib-testing/posix_hosted/hdp/hdp/hdp.cpp \
+ts_byteorder: \
+ /home/fhol/work/hodea-lib-testing/posix_hosted/header_only_units/./ts_byteorder.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/5/iostream \
  /usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/5/bits/os_defines.h \
@@ -73,5 +73,4 @@ hdp/hdp.cpp.o: \
  /usr/include/c++/5/bits/locale_facets.tcc \
  /usr/include/c++/5/bits/basic_ios.tcc \
  /usr/include/c++/5/bits/ostream.tcc /usr/include/c++/5/istream \
- /usr/include/c++/5/bits/istream.tcc \
- /home/fhol/work/hodea-lib-testing/posix_hosted/hdp/hdp/hdp.hpp
+ /usr/include/c++/5/bits/istream.tcc
