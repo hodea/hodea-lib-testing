@@ -1,11 +1,10 @@
 // Copyright (c) 2017, Franz Hollerer. All rights reserved.
 // This code is licensed under the MIT License (MIT).
 // See LICENSE file for full details.
-#include <iostream>
+#include <catch/catch.hpp>
+#include <hodea/utils/bitmanip.hpp>
 
-int main()
+TEST_CASE("Bit manipulation functions", "[bitmanip]")
 {
-    std::cout << "ts_byteorder\n";
+    REQUIRE(foo() == 0x0815);
 }
-
-

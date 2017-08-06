@@ -4,29 +4,31 @@
 
 # ---------------------------------------- project specific settings ---
 
-# path to the hodea library
-export HODEA_ROOT_DIR := ../../hodea-lib
+# relative path to the hodea library
+HODEA_ROOT_DIR := ../../hodea-lib
+
+# relative path to third party libraries
+THIRD_PARTY_ROOT_DIR := ../../third_party
 
 # executable to generate
-export TARGET := ts_hdp
+export TARGET := ts_utils
 
 # C++ source files
-export C_SOURCE_FILES := \
-    hdp/hdp.c
+export C_SOURCE_FILES :=
 
 # C++ source files
 export CXX_SOURCE_FILES := \
-    ts_hdp.cpp \
-    hdp/hdp.cpp
+    main.cpp bitmanip.cpp
 
 # everything in INCLUDE_DIRS will be searched for include files
 INCLUDE_DIRS := \
-    $(HODEA_ROOT_DIR)
+    $(HODEA_ROOT_DIR) \
+    $(THIRD_PARTY_ROOT_DIR)
 
 # root of the build directory
 BUILD_ROOT_DIR := ./build
 
-# ----------------------------the make support files do the reset... ---
+# ----------------------------- let the build support do the rest... ---
 
-include $(HODEA_ROOT_DIR)/make/posix_hosted_std_targets.mk.inc
+include $(HODEA_ROOT_DIR)/build_support/posix_hosted_std_targets.make.inc
 
