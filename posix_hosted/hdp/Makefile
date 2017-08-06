@@ -1,11 +1,11 @@
-# Copyright (c) 2017, Franz Hollerer.
+# Copyright (c) 2017, Franz Hollerer. All rights reserved.
 # This code is licensed under the MIT License (MIT).
 # See LICENSE file for full details.
 
 # ---------------------------------------- project specific settings ---
 
 # path to the hodea library
-export HODEA_ROOT_DIR := ../../hodea
+export HODEA_ROOT_DIR := ../../hodea-lib
 
 # executable to generate
 export TARGET := ts_hdp
