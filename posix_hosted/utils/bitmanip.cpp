@@ -8,7 +8,14 @@
 
 using namespace hodea;
 
-TEST_CASE("Bit manipulation: clr_bit ", "[clr_bit]")
+TEST_CASE("Bit manipulation: Bitmask ", "[Bitmask]")
+{
+    constexpr unsigned msk = Bitmask<>{}.bit(0).bit(2);
+    REQUIRE(msk == 0x5);
+}
+
+
+TEST_CASE("Bit manipulation: clr_bit() ", "[clr_bit]")
 {
     unsigned v = 0xcafeU;
     
