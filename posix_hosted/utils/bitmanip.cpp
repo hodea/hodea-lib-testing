@@ -1,10 +1,66 @@
 // Copyright (c) 2017, Franz Hollerer. All rights reserved.
 // This code is licensed under the MIT License (MIT).
 // See LICENSE file for full details.
+#include <iostream>
+#include <stdint.h>
 #include <catch/catch.hpp>
 #include <hodea/utils/bitmanip.hpp>
 
-TEST_CASE("Bit manipulation functions", "[bitmanip]")
+using namespace hodea;
+
+TEST_CASE("Bit manipulation: clr_bit ", "[clr_bit]")
 {
-    REQUIRE(foo() == 0x0815);
+    unsigned v = 0xcafeU;
+    
+    clr_bit(v, 0x028eU);
+    REQUIRE(v == 0xc870U);
+}
+
+TEST_CASE("Bit manipulation: set_bit()", "[set_bit]")
+{
+    unsigned v = 0;
+    int8_t m = 0xff;
+
+    set_bit(v, m);
+    REQUIRE(v == 0xff);
+}
+
+TEST_CASE("Bit manipulation: set_bit_value()", "[set_bit_value]")
+{
+    unsigned v = 0xaa;
+
+    set_bit_value(v, 0x55, 1);
+    REQUIRE(v == 0xff);
+
+    set_bit_value(v, 0xaa, 0);
+    REQUIRE(v == 0x55);
+}
+
+TEST_CASE("Bit manipulation: modify_bits()", "[modify_bits]")
+{
+    unsigned v = 0xffaaffaa;
+    modify_bits(v, 0x5500aa00, 0x00550055);
+    REQUIRE(v == 0xaaff55ff);
+}
+
+TEST_CASE("Bit manipulation: is_bit_set()", "[is_bit_set]")
+{
+    unsigned v = 3;
+
+    REQUIRE(is_bit_set(v, 1) == true);
+    REQUIRE(is_bit_set(v, 2) == true);
+    REQUIRE(is_bit_set(v, 3) == true);
+    REQUIRE(is_bit_set(v, 4) == false);
+    REQUIRE(is_bit_set(v, 7) == true);
+}
+
+TEST_CASE("Bit manipulation: are_all_bits_set()", "[are_all_bits_set]")
+{
+    unsigned v = 3;
+
+    REQUIRE(are_all_bits_set(v, 1) == true);
+    REQUIRE(are_all_bits_set(v, 2) == true);
+    REQUIRE(are_all_bits_set(v, 3) == true);
+    REQUIRE(are_all_bits_set(v, 4) == false);
+    REQUIRE(are_all_bits_set(v, 7) == false);
 }
