@@ -4,15 +4,62 @@
 #include <iostream>
 #include <stdint.h>
 #include <catch/catch.hpp>
-#include <hodea/utils/bitmanip.hpp>
+#include <hodea/utils/byteorder.hpp>
 
 using namespace hodea;
 
-TEST_CASE("Byteorder: fetch_le() ", "[fetch_le]")
+TEST_CASE("Byteorder: fetch8() ", "[fetch8]")
 {
-    unsigned v = 0xcafeU;
-    
-    clr_bit(v, 0x028eU);
-    REQUIRE(v == 0xc870U);
+    uint8_t buf[] = {0xaa};
+    unsigned v;
+    unsigned cnt;
+
+    cnt = fetch8(v, buf);
+    REQUIRE(v == 0xaa);
+    REQUIRE(cnt == 1);
+}
+
+TEST_CASE("Byteorder: fetch16_le() ", "[fetch16_le]")
+{
+    uint8_t buf[] = {0x08, 0x15};
+    unsigned v;
+    unsigned cnt;
+
+    cnt = fetch16_le(v, buf);
+    REQUIRE(v == 0x1508);
+    REQUIRE(cnt == 2);
+}
+
+TEST_CASE("Byteorder: fetch32_le() ", "[fetch32_le]")
+{
+    uint8_t buf[] = {0x08, 0x15, 0xca, 0xfe};
+    unsigned v;
+    unsigned cnt;
+
+    cnt = fetch32_le(v, buf);
+    REQUIRE(v == 0xfeca1508U);
+    REQUIRE(cnt == 4);
+}
+
+TEST_CASE("Byteorder: fetch16_be() ", "[fetch16_be]")
+{
+    uint8_t buf[] = {0x08, 0x15};
+    unsigned v;
+    unsigned cnt;
+
+    cnt = fetch16_be(v, buf);
+    REQUIRE(v == 0x0815);
+    REQUIRE(cnt == 2);
+}
+
+TEST_CASE("Byteorder: fetch32_be() ", "[fetch32_be]")
+{
+    uint8_t buf[] = {0x08, 0x15, 0xca, 0xfe};
+    unsigned v;
+    unsigned cnt;
+
+    cnt = fetch32_be(v, buf);
+    REQUIRE(v == 0x0815cafe);
+    REQUIRE(cnt == 4);
 }
 
