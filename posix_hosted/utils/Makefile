@@ -18,7 +18,7 @@ export C_SOURCE_FILES :=
 
 # C++ source files
 export CXX_SOURCE_FILES := \
-    main.cpp bitmanip.cpp
+    main.cpp bitmanip.cpp byteorder.cpp
 
 # everything in INCLUDE_DIRS will be searched for include files
 INCLUDE_DIRS := \

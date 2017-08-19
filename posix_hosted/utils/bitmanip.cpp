@@ -10,10 +10,16 @@ using namespace hodea;
 
 TEST_CASE("Bit manipulation: Bitmask ", "[Bitmask]")
 {
-    constexpr unsigned msk = Bitmask<>{}.bit(0).bit(2);
+    constexpr uint8_t msk = Bitmask<uint8_t>{}.bit(0).bit(2);
     REQUIRE(msk == 0x5);
 }
 
+TEST_CASE("Bit manipulation: bit_pos_to_msk()", "[bit_pos_to_msk]")
+{
+    constexpr uint8_t m8 = bit_to_msk(7);
+
+    REQUIRE(m8 == 0x80U);
+}
 
 TEST_CASE("Bit manipulation: clr_bit() ", "[clr_bit]")
 {
