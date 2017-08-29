@@ -25,8 +25,8 @@ export C_SOURCE_FILES := \
 export CXX_SOURCE_FILES := \
     src/main.cpp 
 
-# Additional defines
-export DEFINES := STM32F091xC
+# Project specific flags which need to be passed to the compiler
+export USER_FLAGS := -DSTM32F091xC -mcpu=cortex-m0 -mthumb
 
 # Linker script
 export LINKER_SCRIPT := src/stm32f0/STM32F091RCTx_FLASH.ld
