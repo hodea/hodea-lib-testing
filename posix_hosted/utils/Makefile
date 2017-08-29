@@ -13,7 +13,7 @@ THIRD_PARTY_ROOT_DIR := ../../third_party
 # executable to generate
 export TARGET := ts_utils
 
-# C++ source files
+# C source files
 export C_SOURCE_FILES :=
 
 # C++ source files
