@@ -40,20 +40,6 @@ INCLUDE_DIRS := \
 # root of the build directory
 BUILD_ROOT_DIR := ./build
 
-# ------------------------------------------------ default toolchain ---
-
-ifeq ($(origin CC), default)
-export CC = arm-none-eabi-gcc
-endif
-
-ifeq ($(origin CXX), default)
-export CXX = arm-none-eabi-g++
-endif
-
-ifndef OBJCOPY
-OBJCOPY := arm-none-eabi-objcopy
-endif
-
 # ----------------------------- let the build support do the rest... ---
 
 include $(HODEA_ROOT_DIR)/build_support/cross_compile_std_targets.make.inc
