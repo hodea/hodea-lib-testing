@@ -1,3 +1,6 @@
 
 # ignore build directories
 build/
+
+# ignore Ozone user interface (UI) settings
+*.jdebug.user
