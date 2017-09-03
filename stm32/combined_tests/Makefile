@@ -8,7 +8,7 @@
 HODEA_ROOT_DIR := ../../hodea-lib
 
 # relative path to the CMSIS package
-CMSIS_ROOT_DIR := ../../hodea-stm32f0-cmsis
+CMSIS_ROOT_DIR := ../../hodea-stm32f0-vpkg/CMSIS
 
 # executable to generate
 export TARGET := stm32f0_combined_tests
