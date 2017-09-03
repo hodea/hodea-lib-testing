@@ -7,9 +7,9 @@ material from the projects listed below. The original copyright notice and
 the license under which the it is released is reproduced below.
 
 
-1.	Catch (https://github.com/philsquared/Catch)
+1.  Catch (https://github.com/philsquared/Catch)
 
-
+```
 %% Catch NOTICES, INFORMATION, AND LICENSE BEGIN HERE
 ===========================================================================
 Boost Software License - Version 1.0 - August 17th, 2003
@@ -38,4 +38,4 @@ DEALINGS IN THE SOFTWARE.
 ===========================================================================
 END OF Catch NOTICES, INFORMATION, AND LICENSE
 
-
+```
