@@ -2,5 +2,8 @@
 # ignore build directories
 build/
 
-# ignore Ozone user interface (UI) settings
+# ignore Segger Ozone user interface (UI) settings
 *.jdebug.user
+
+# Segger emStudio session files
+*.emSession
