@@ -14,25 +14,25 @@ set(CMAKE_VERBOSE_MAKEFILE false)
 
 # ---------------------------------------- project specific settings ---
 
-set(TARGET_NAME "stm32f0_combined_tests")
+set(TARGET_NAME "stm32f334_combined_tests")
 
 set(CMAKE_SOURCE_DIR "${PROJECT_ROOT_DIR}/src")
 set(HODEA_ROOT_DIR "${PROJECT_ROOT_DIR}/../../hodea-lib")
-set(CMSIS_ROOT_DIR "${PROJECT_ROOT_DIR}/../../hodea-stm32f0-vpkg/CMSIS")
+set(CMSIS_ROOT_DIR "${PROJECT_ROOT_DIR}/../../hodea-stm32f3-vpkg/CMSIS")
 
 add_executable(${TARGET_NAME}
     "${CMAKE_SOURCE_DIR}/main.cpp"
-    "${CMAKE_SOURCE_DIR}/stm32f0/system_stm32f0xx.c"
-    "${CMAKE_SOURCE_DIR}/stm32f0/startup_stm32f091xc.s"
+    "${CMAKE_SOURCE_DIR}/stm32f334/system_stm32f3xx.c"
+    "${CMAKE_SOURCE_DIR}/stm32f334/gcc/startup_stm32f334x8.s"
     )
 
 include_directories(
     "${HODEA_ROOT_DIR}"
     "${CMSIS_ROOT_DIR}/Include"
-    "${CMSIS_ROOT_DIR}/Device/ST/STM32F0xx/Include"
+    "${CMSIS_ROOT_DIR}/Device/ST/STM32F3xx/Include"
     )
 
-add_definitions(-DSTM32F091xC)
+add_definitions(-DSTM32F334x8)
 
 # ------------------------------------------------ compiler settings ---
 
@@ -62,7 +62,7 @@ set(CMAKE_CXX_FLAGS "\
     )
 set(CMAKE_EXE_LINKER_FLAGS "\
     --specs=nano.specs -Xlinker --gc-sections \
-    -T${CMAKE_SOURCE_DIR}/stm32f0/STM32F091RCTx_FLASH.ld \
+    -T${CMAKE_SOURCE_DIR}/stm32f334/gcc/STM32F334R8Tx_FLASH.ld \
     -Xlinker -Map=${TARGET_NAME}.map"
     )
 
