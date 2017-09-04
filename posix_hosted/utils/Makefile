@@ -1,34 +1,51 @@
+
 # Copyright (c) 2017, Franz Hollerer. All rights reserved.
 # This code is licensed under the MIT License (MIT).
 # See LICENSE file for full details.
 
 # ---------------------------------------- project specific settings ---
 
-# relative path to the hodea library
-HODEA_ROOT_DIR := ../../hodea-lib
+TARGETS := utils
+export BUILD_ROOT_DIR := ./build
 
-# relative path to third party libraries
-THIRD_PARTY_ROOT_DIR := ../../third_party
+# --------------------------------------- derived settings and rules ---
 
-# executable to generate
-export TARGET := ts_utils
+export PROJECT_ROOT_DIR ?= $(CURDIR)
 
-# C source files
-export C_SOURCE_FILES :=
+export BUILD_TYPE ?= release
 
-# C++ source files
-export CXX_SOURCE_FILES := \
-    main.cpp bitmanip.cpp byteorder.cpp
+MAKEFILE := $(lastword $(MAKEFILE_LIST))
 
-# everything in INCLUDE_DIRS will be searched for include files
-INCLUDE_DIRS := \
-    $(HODEA_ROOT_DIR) \
-    $(THIRD_PARTY_ROOT_DIR)
+all:
+	for i in $(TARGETS) ; do \
+	    $(MAKE) -f $(MAKEFILE) CURRENT_TARGET=$$i $$i; \
+	done
 
-# root of the build directory
-BUILD_ROOT_DIR := ./build
+debug:
+	$(MAKE) -f $(MAKEFILE) BUILD_TYPE=debug
 
-# ----------------------------- let the build support do the rest... ---
+release:
+	$(MAKE) -f $(MAKEFILE) BUILD_TYPE=release
 
-include $(HODEA_ROOT_DIR)/build_support/posix_hosted_std_targets.make.inc
+coverage:
+	$(MAKE) -f $(MAKEFILE) BUILD_TYPE=coverage
 
+ifdef CURRENT_TARGET
+
+BUILD_DIR := $(BUILD_ROOT_DIR)/$(BUILD_TYPE)
+
+$(CURRENT_TARGET): $(BUILD_DIR)/CMakeLists.txt
+	make -C $(BUILD_DIR)
+
+$(BUILD_DIR)/CMakeLists.txt: \
+    $(PROJECT_ROOT_DIR)/CMakeLists_$(CURRENT_TARGET).txt
+	mkdir -p $(BUILD_DIR)
+	cp $< $@
+	cd $(BUILD_DIR) && \
+	cmake -DPROJECT_ROOT_DIR=$(PROJECT_ROOT_DIR) \
+	    -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
+
+endif
+
+clean:
+	rm -rf $(BUILD_ROOT_DIR)

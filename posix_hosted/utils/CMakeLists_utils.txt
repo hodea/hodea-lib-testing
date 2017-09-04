@@ -1,0 +1,52 @@
+# Copyright (c) 2017, Franz Hollerer. All rights reserved.
+# This code is licensed under the MIT License (MIT).
+# See LICENSE file for full details.
+
+# -------------------------------------------- minimum cmake version ---
+
+# We tested the build with cmake 3.5, but it probably also works with
+# older versions.
+cmake_minimum_required(VERSION 3.5)
+
+# ------------------------------------------ build process debugging ---
+
+set(CMAKE_VERBOSE_MAKEFILE false)
+
+# ---------------------------------------- project specific settings ---
+
+set(TARGET_NAME "ts_utils")
+
+set(CMAKE_SOURCE_DIR "${PROJECT_ROOT_DIR}")
+set(HODEA_ROOT_DIR "${PROJECT_ROOT_DIR}/../../hodea-lib")
+set(THIRD_PARTY_ROOT_DIR "${PROJECT_ROOT_DIR}/../../third_party")
+
+add_executable(${TARGET_NAME}
+    "${CMAKE_SOURCE_DIR}/main.cpp"
+    "${CMAKE_SOURCE_DIR}/bitmanip.cpp"
+    "${CMAKE_SOURCE_DIR}/byteorder.cpp"
+    )
+
+include_directories(
+    "${HODEA_ROOT_DIR}"
+    "${THIRD_PARTY_ROOT_DIR}"
+    )
+
+# ------------------------------------------------ compiler settings ---
+
+set(CMAKE_C_FLAGS_DEBUG "-O0")
+set(CMAKE_C_FLAGS_RELEASE "-O3")
+set(CMAKE_C_FLAGS_COVERGAGE "\
+    -O0 -fprofile-instr-generate -fcoverage-mapping"
+    )
+set(CMAKE_CXX_FLAGS_DEBUG "-O0")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+set(CMAKE_CXX_FLAGS_COVERGAGE "\
+    -O0 -fprofile-instr-generate -fcoverage-mapping"
+    )
+
+set(CMAKE_C_FLAGS "-g -Wall -std=c11")
+set(CMAKE_CXX_FLAGS "-g -Wall -std=c++11")
+set(CMAKE_EXE_LINKER_FLAGS "\
+    -Xlinker --gc-sections \
+    -Xlinker -Map=${TARGET_NAME}.map"
+    )
