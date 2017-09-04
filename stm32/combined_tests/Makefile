@@ -1,46 +1,48 @@
+
 # Copyright (c) 2017, Franz Hollerer. All rights reserved.
 # This code is licensed under the MIT License (MIT).
 # See LICENSE file for full details.
 
 # ---------------------------------------- project specific settings ---
 
-# relative path to the hodea library
-HODEA_ROOT_DIR := ../../hodea-lib
+TARGETS := stm32f0
+export BUILD_ROOT_DIR := ./build
 
-# relative path to the CMSIS package
-CMSIS_ROOT_DIR := ../../hodea-stm32f0-vpkg/CMSIS
+# --------------------------------------- derived settings and rules ---
 
-# executable to generate
-export TARGET := stm32f0_combined_tests
+export PROJECT_ROOT_DIR ?= $(CURDIR)
 
-# assembler source files
-export AS_SOURCE_FILES := \
-    src/stm32f0/startup_stm32f091xc.s
+export BUILD_TYPE ?= release
 
-# C source files
-export C_SOURCE_FILES := \
-    src/stm32f0/system_stm32f0xx.c
+MAKEFILE := $(lastword $(MAKEFILE_LIST))
 
-# C++ source files
-export CXX_SOURCE_FILES := \
-    src/main.cpp 
+all:
+	for i in $(TARGETS) ; do \
+	    $(MAKE) -f $(MAKEFILE) CURRENT_TARGET=$$i $$i; \
+	done
 
-# Project specific flags which need to be passed to the compiler
-export USER_FLAGS := -DSTM32F091xC -mcpu=cortex-m0 -mthumb
+debug:
+	$(MAKE) -f $(MAKEFILE) BUILD_TYPE=debug
 
-# Linker script
-export LINKER_SCRIPT := src/stm32f0/STM32F091RCTx_FLASH.ld
+release:
+	$(MAKE) -f $(MAKEFILE) BUILD_TYPE=release
 
-# everything in INCLUDE_DIRS will be searched for include files
-INCLUDE_DIRS := \
-    $(HODEA_ROOT_DIR) \
-    $(CMSIS_ROOT_DIR)/Include \
-    $(CMSIS_ROOT_DIR)/Device/ST/STM32F0xx/Include
+ifdef CURRENT_TARGET
 
-# root of the build directory
-BUILD_ROOT_DIR := ./build
+BUILD_DIR := $(BUILD_ROOT_DIR)/$(CURRENT_TARGET)/$(BUILD_TYPE)
 
-# ----------------------------- let the build support do the rest... ---
+$(CURRENT_TARGET): $(BUILD_DIR)/CMakeLists.txt
+	make -C $(BUILD_DIR)
 
-include $(HODEA_ROOT_DIR)/build_support/cross_compile_std_targets.make.inc
+$(BUILD_DIR)/CMakeLists.txt: \
+    $(PROJECT_ROOT_DIR)/CMakeLists_$(CURRENT_TARGET).txt
+	mkdir -p $(BUILD_DIR)
+	cp $< $@
+	cd $(BUILD_DIR) && \
+	cmake -DPROJECT_ROOT_DIR=$(PROJECT_ROOT_DIR) \
+	    -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
 
+endif
+
+clean:
+	rm -rf $(BUILD_ROOT_DIR)
