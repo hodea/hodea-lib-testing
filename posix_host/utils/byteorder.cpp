@@ -12,7 +12,7 @@ TEST_CASE("Byteorder: fetch8()", "[fetch8]")
 {
     uint8_t buf[] = {0xaa};
     unsigned v;
-    unsigned cnt;
+    int cnt;
 
     cnt = fetch8(v, buf);
     REQUIRE(v == 0xaa);
@@ -23,7 +23,7 @@ TEST_CASE("Byteorder: fetch16_le()", "[fetch16_le]")
 {
     uint8_t buf[] = {0x08, 0x15};
     unsigned v;
-    unsigned cnt;
+    int cnt;
 
     cnt = fetch16_le(v, buf);
     REQUIRE(v == 0x1508);
@@ -34,7 +34,7 @@ TEST_CASE("Byteorder: fetch32_le()", "[fetch32_le]")
 {
     uint8_t buf[] = {0x08, 0x15, 0xca, 0xfe};
     unsigned v;
-    unsigned cnt;
+    int cnt;
 
     cnt = fetch32_le(v, buf);
     REQUIRE(v == 0xfeca1508U);
@@ -45,7 +45,7 @@ TEST_CASE("Byteorder: fetch64_le()", "[fetch64_le]")
 {
     uint8_t buf[] = {0x08, 0x15, 0xca, 0xfe, 0x41, 0x11, 0xc0, 0x01};
     uint64_t v;
-    unsigned cnt;
+    int cnt;
 
     cnt = fetch64_le(v, buf);
     REQUIRE(v == 0x01c01141feca1508LLU);
@@ -56,7 +56,7 @@ TEST_CASE("Byteorder: fetch16_be()", "[fetch16_be]")
 {
     uint8_t buf[] = {0x08, 0x15};
     unsigned v;
-    unsigned cnt;
+    int cnt;
 
     cnt = fetch16_be(v, buf);
     REQUIRE(v == 0x0815);
@@ -67,7 +67,7 @@ TEST_CASE("Byteorder: fetch32_be()", "[fetch32_be]")
 {
     uint8_t buf[] = {0x08, 0x15, 0xca, 0xfe};
     unsigned v;
-    unsigned cnt;
+    int cnt;
 
     cnt = fetch32_be(v, buf);
     REQUIRE(v == 0x0815cafe);
@@ -88,7 +88,7 @@ TEST_CASE("Byteorder: fetch64_be()", "[fetch64_be]")
 TEST_CASE("Byteorder: store8()", "[store8]")
 {
     uint8_t buf[] = {0};
-    unsigned cnt;
+    int cnt;
 
     cnt = store8(buf, 0x11);
     REQUIRE(buf[0] == 0x11);
@@ -98,7 +98,7 @@ TEST_CASE("Byteorder: store8()", "[store8]")
 TEST_CASE("Byteorder: store16_le()", "[store16_le]")
 {
     uint8_t buf[] = {0, 0};
-    unsigned cnt;
+    int cnt;
 
     cnt = store16_le(buf, 0x4711);
     REQUIRE(buf[0] == 0x11);
@@ -109,7 +109,7 @@ TEST_CASE("Byteorder: store16_le()", "[store16_le]")
 TEST_CASE("Byteorder: store32_le()", "[store32_le]")
 {
     uint8_t buf[] = {0, 0, 0, 0};
-    unsigned cnt;
+    int cnt;
 
     cnt = store32_le(buf, 0x08154711);
     REQUIRE(buf[0] == 0x11);
@@ -122,7 +122,7 @@ TEST_CASE("Byteorder: store32_le()", "[store32_le]")
 TEST_CASE("Byteorder: store64_le()", "[store64_le]")
 {
     uint8_t buf[] = {0, 0, 0, 0, 0, 0, 0, 0};
-    unsigned cnt;
+    int cnt;
 
     cnt = store64_le(buf, 0xc001cafe08154711LLU);
     REQUIRE(buf[0] == 0x11);
@@ -139,7 +139,7 @@ TEST_CASE("Byteorder: store64_le()", "[store64_le]")
 TEST_CASE("Byteorder: store16_be()", "[store16_be]")
 {
     uint8_t buf[] = {0, 0};
-    unsigned cnt;
+    int cnt;
 
     cnt = store16_be(buf, 0x4711);
     REQUIRE(buf[0] == 0x47);
@@ -150,7 +150,7 @@ TEST_CASE("Byteorder: store16_be()", "[store16_be]")
 TEST_CASE("Byteorder: store32_be()", "[store32_be]")
 {
     uint8_t buf[] = {0, 0, 0, 0};
-    unsigned cnt;
+    int cnt;
 
     cnt = store32_be(buf, 0x08154711);
     REQUIRE(buf[0] == 0x08);
@@ -163,7 +163,7 @@ TEST_CASE("Byteorder: store32_be()", "[store32_be]")
 TEST_CASE("Byteorder: store64_be()", "[store64_le]")
 {
     uint8_t buf[] = {0, 0, 0, 0, 0, 0, 0, 0};
-    unsigned cnt;
+    int cnt;
 
     cnt = store64_be(buf, 0xc001cafe08154711LLU);
     REQUIRE(buf[0] == 0xc0);
@@ -177,3 +177,14 @@ TEST_CASE("Byteorder: store64_be()", "[store64_le]")
     REQUIRE(cnt == 8);
 }
 
+TEST_CASE("Byteorder: is_cpu_little_endian()", "[is_cpu_little_endian]")
+{
+    REQUIRE(is_cpu_little_endian() == true);
+
+}
+
+TEST_CASE("Byteorder: is_cpu_big_endian()", "[is_cpu_big_endian]")
+{
+    REQUIRE(is_cpu_big_endian() == false);
+
+}
