@@ -53,12 +53,14 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 set(CMAKE_C_FLAGS "\
-    -g -Wall -ffreestanding -ffunction-sections -fdata-sections \
-    -fno-common -mcpu=cortex-m0 -mthumb -std=c11"
+    -g -Wall \
+    -ffreestanding -ffunction-sections -fdata-sections -fno-common \
+    -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=c11"
     )
 set(CMAKE_CXX_FLAGS "\
-    -g -Wall -ffreestanding -ffunction-sections -fdata-sections \
-    -fno-common -mcpu=cortex-m0 -mthumb -std=c++11"
+    -g -Wall \
+    -ffreestanding -ffunction-sections -fdata-sections -fno-common \
+    -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=c++11"
     )
 set(CMAKE_EXE_LINKER_FLAGS "\
     --specs=nano.specs -Xlinker --gc-sections \
