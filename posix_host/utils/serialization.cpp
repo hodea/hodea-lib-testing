@@ -4,11 +4,11 @@
 #include <iostream>
 #include <stdint.h>
 #include <catch/catch.hpp>
-#include <hodea/utils/byteorder.hpp>
+#include <hodea/utils/serialization.hpp>
 
 using namespace hodea;
 
-TEST_CASE("Byteorder: fetch8()", "[fetch8]")
+TEST_CASE("Serialization: fetch8()", "[fetch8]")
 {
     uint8_t buf[] = {0xaa};
     unsigned v;
@@ -19,7 +19,7 @@ TEST_CASE("Byteorder: fetch8()", "[fetch8]")
     REQUIRE(cnt == 1);
 }
 
-TEST_CASE("Byteorder: fetch16_le()", "[fetch16_le]")
+TEST_CASE("Serialization: fetch16_le()", "[fetch16_le]")
 {
     uint8_t buf[] = {0x08, 0x15};
     unsigned v;
@@ -30,7 +30,7 @@ TEST_CASE("Byteorder: fetch16_le()", "[fetch16_le]")
     REQUIRE(cnt == 2);
 }
 
-TEST_CASE("Byteorder: fetch32_le()", "[fetch32_le]")
+TEST_CASE("Serialization: fetch32_le()", "[fetch32_le]")
 {
     uint8_t buf[] = {0x08, 0x15, 0xca, 0xfe};
     unsigned v;
@@ -41,7 +41,7 @@ TEST_CASE("Byteorder: fetch32_le()", "[fetch32_le]")
     REQUIRE(cnt == 4);
 }
 
-TEST_CASE("Byteorder: fetch64_le()", "[fetch64_le]")
+TEST_CASE("Serialization: fetch64_le()", "[fetch64_le]")
 {
     uint8_t buf[] = {0x08, 0x15, 0xca, 0xfe, 0x41, 0x11, 0xc0, 0x01};
     uint64_t v;
@@ -52,7 +52,7 @@ TEST_CASE("Byteorder: fetch64_le()", "[fetch64_le]")
     REQUIRE(cnt == 8);
 }
 
-TEST_CASE("Byteorder: fetch16_be()", "[fetch16_be]")
+TEST_CASE("Serialization: fetch16_be()", "[fetch16_be]")
 {
     uint8_t buf[] = {0x08, 0x15};
     unsigned v;
@@ -63,7 +63,7 @@ TEST_CASE("Byteorder: fetch16_be()", "[fetch16_be]")
     REQUIRE(cnt == 2);
 }
 
-TEST_CASE("Byteorder: fetch32_be()", "[fetch32_be]")
+TEST_CASE("Serialization: fetch32_be()", "[fetch32_be]")
 {
     uint8_t buf[] = {0x08, 0x15, 0xca, 0xfe};
     unsigned v;
@@ -74,7 +74,7 @@ TEST_CASE("Byteorder: fetch32_be()", "[fetch32_be]")
     REQUIRE(cnt == 4);
 }
 
-TEST_CASE("Byteorder: fetch64_be()", "[fetch64_be]")
+TEST_CASE("Serialization: fetch64_be()", "[fetch64_be]")
 {
     uint8_t buf[] = {0x08, 0x15, 0xca, 0xfe, 0x41, 0x11, 0xc0, 0x01};
     uint64_t v;
@@ -85,7 +85,7 @@ TEST_CASE("Byteorder: fetch64_be()", "[fetch64_be]")
     REQUIRE(cnt == 8);
 }
 
-TEST_CASE("Byteorder: store8()", "[store8]")
+TEST_CASE("Serialization: store8()", "[store8]")
 {
     uint8_t buf[] = {0};
     int cnt;
@@ -95,7 +95,7 @@ TEST_CASE("Byteorder: store8()", "[store8]")
     REQUIRE(cnt == 1);
 }
 
-TEST_CASE("Byteorder: store16_le()", "[store16_le]")
+TEST_CASE("Serialization: store16_le()", "[store16_le]")
 {
     uint8_t buf[] = {0, 0};
     int cnt;
@@ -106,7 +106,7 @@ TEST_CASE("Byteorder: store16_le()", "[store16_le]")
     REQUIRE(cnt == 2);
 }
 
-TEST_CASE("Byteorder: store32_le()", "[store32_le]")
+TEST_CASE("Serialization: store32_le()", "[store32_le]")
 {
     uint8_t buf[] = {0, 0, 0, 0};
     int cnt;
@@ -119,7 +119,7 @@ TEST_CASE("Byteorder: store32_le()", "[store32_le]")
     REQUIRE(cnt == 4);
 }
 
-TEST_CASE("Byteorder: store64_le()", "[store64_le]")
+TEST_CASE("Serialization: store64_le()", "[store64_le]")
 {
     uint8_t buf[] = {0, 0, 0, 0, 0, 0, 0, 0};
     int cnt;
@@ -136,7 +136,7 @@ TEST_CASE("Byteorder: store64_le()", "[store64_le]")
     REQUIRE(cnt == 8);
 }
 
-TEST_CASE("Byteorder: store16_be()", "[store16_be]")
+TEST_CASE("Serialization: store16_be()", "[store16_be]")
 {
     uint8_t buf[] = {0, 0};
     int cnt;
@@ -147,7 +147,7 @@ TEST_CASE("Byteorder: store16_be()", "[store16_be]")
     REQUIRE(cnt == 2);
 }
 
-TEST_CASE("Byteorder: store32_be()", "[store32_be]")
+TEST_CASE("Serialization: store32_be()", "[store32_be]")
 {
     uint8_t buf[] = {0, 0, 0, 0};
     int cnt;
@@ -160,7 +160,7 @@ TEST_CASE("Byteorder: store32_be()", "[store32_be]")
     REQUIRE(cnt == 4);
 }
 
-TEST_CASE("Byteorder: store64_be()", "[store64_le]")
+TEST_CASE("Serialization: store64_be()", "[store64_le]")
 {
     uint8_t buf[] = {0, 0, 0, 0, 0, 0, 0, 0};
     int cnt;
