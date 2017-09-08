@@ -177,14 +177,3 @@ TEST_CASE("Byteorder: store64_be()", "[store64_le]")
     REQUIRE(cnt == 8);
 }
 
-TEST_CASE("Byteorder: is_cpu_little_endian()", "[is_cpu_little_endian]")
-{
-    REQUIRE(is_cpu_little_endian() == true);
-
-}
-
-TEST_CASE("Byteorder: is_cpu_big_endian()", "[is_cpu_big_endian]")
-{
-    REQUIRE(is_cpu_big_endian() == false);
-
-}
