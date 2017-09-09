@@ -18,3 +18,8 @@ TEST_CASE("Cpu endian: is_cpu_be()", "[is_cpu_be]")
     REQUIRE(is_cpu_be() == false);
 }
 
+TEST_CASE("Cpu endian: cpu_to_le()", "[cpu_to_le16]")
+{
+    REQUIRE(cpu_to_le16(0x1234) == 0x1234);
+}
+
