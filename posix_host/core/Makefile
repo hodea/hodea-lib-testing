@@ -5,7 +5,7 @@
 
 # ---------------------------------------- project specific settings ---
 
-TARGETS := core
+TARGET := core
 export BUILD_ROOT_DIR := ./build
 
 # --------------------------------------- derived settings and rules ---
@@ -17,9 +17,7 @@ export BUILD_TYPE ?= release
 MAKEFILE := $(lastword $(MAKEFILE_LIST))
 
 all:
-	for i in $(TARGETS) ; do \
-	    $(MAKE) -f $(MAKEFILE) CURRENT_TARGET=$$i $$i; \
-	done
+	$(MAKE) -f $(MAKEFILE) CURRENT_TARGET=$(TARGET) $(TARGET)
 
 debug:
 	$(MAKE) -f $(MAKEFILE) BUILD_TYPE=debug
