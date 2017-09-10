@@ -26,6 +26,8 @@ add_executable(${TARGET_NAME}
     "${CMAKE_SOURCE_DIR}/serialization.cpp"
     "${CMAKE_SOURCE_DIR}/cpu_endian.cpp"
     "${CMAKE_SOURCE_DIR}/uswap.cpp"
+    "${CMAKE_SOURCE_DIR}/math.cpp"
+    "${CMAKE_SOURCE_DIR}/utils.cpp"
     )
 
 target_include_directories(${TARGET_NAME} PRIVATE
