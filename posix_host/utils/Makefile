@@ -5,7 +5,7 @@
 
 # ---------------------------------------- project specific settings ---
 
-TARGETS := utils
+TARGETS := core
 export BUILD_ROOT_DIR := ./build
 
 # --------------------------------------- derived settings and rules ---

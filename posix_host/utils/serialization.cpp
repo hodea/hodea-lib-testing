@@ -2,9 +2,9 @@
 // This code is licensed under the MIT License (MIT).
 // See LICENSE file for full details.
 #include <iostream>
-#include <stdint.h>
 #include <catch/catch.hpp>
-#include <hodea/utils/serialization.hpp>
+#include <hodea/core/cstdint.hpp>
+#include <hodea/core/serialization.hpp>
 
 using namespace hodea;
 

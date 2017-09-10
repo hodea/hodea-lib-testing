@@ -2,9 +2,9 @@
 // This code is licensed under the MIT License (MIT).
 // See LICENSE file for full details.
 #include <iostream>
-#include <stdint.h>
 #include <catch/catch.hpp>
-#include <hodea/utils/uswap.hpp>
+#include <hodea/core/cstdint.hpp>
+#include <hodea/core/uswap.hpp>
 
 using namespace hodea;
 
