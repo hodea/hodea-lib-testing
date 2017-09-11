@@ -56,6 +56,13 @@ TEST_CASE("Bit manipulation: modify_bits()", "[modify_bits]")
     REQUIRE(v == 0xaaff55ff);
 }
 
+TEST_CASE("Bit manipulation: toggle_bit()", "[toggle_bit]")
+{
+    unsigned v = 0xffaaffaa;
+    toggle_bit(v, 0x000000ff);
+    REQUIRE(v == 0xffaaff55);
+}
+
 TEST_CASE("Bit manipulation: is_bit_set()", "[is_bit_set]")
 {
     unsigned v = 3;
