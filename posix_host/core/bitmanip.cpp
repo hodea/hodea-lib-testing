@@ -71,6 +71,12 @@ TEST_CASE("Bit manipulation: is_bit_set()", "[is_bit_set]")
     REQUIRE(is_bit_set(v, 2) == true);
     REQUIRE(is_bit_set(v, 3) == true);
     REQUIRE(is_bit_set(v, 4) == false);
-    REQUIRE(is_bit_set(v, 7) == false);
+    REQUIRE(is_bit_set(v, 7) == true);
+
+    REQUIRE(is_bit_set(v, 1, true) == true);
+    REQUIRE(is_bit_set(v, 2, true) == true);
+    REQUIRE(is_bit_set(v, 3, true) == true);
+    REQUIRE(is_bit_set(v, 4, true) == false);
+    REQUIRE(is_bit_set(v, 7, true) == false);
 }
 
