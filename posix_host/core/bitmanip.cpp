@@ -8,19 +8,6 @@
 
 using namespace hodea;
 
-TEST_CASE("Bit manipulation: Bitmask ", "[Bitmask]")
-{
-    constexpr uint8_t msk = Bitmask<uint8_t>{}.bit(0).bit(2);
-    REQUIRE(msk == 0x5);
-}
-
-TEST_CASE("Bit manipulation: bit_pos_to_msk()", "[bit_pos_to_msk]")
-{
-    constexpr uint8_t m8 = bit_to_msk(7);
-
-    REQUIRE(m8 == 0x80U);
-}
-
 TEST_CASE("Bit manipulation: clr_bit() ", "[clr_bit]")
 {
     unsigned v = 0xcafeU;
@@ -80,3 +67,58 @@ TEST_CASE("Bit manipulation: is_bit_set()", "[is_bit_set]")
     REQUIRE(is_bit_set(v, 7, true) == false);
 }
 
+TEST_CASE("Bit manipulation: enum_bitmask()", "[enum_bitmask]")
+{
+    enum {
+        b0 = 1,
+        b1 = 2
+    };
+
+    unsigned v = 3;
+
+    clr_bit(v, b0);
+    REQUIRE(v == 2);
+
+    set_bit(v, b0);
+    REQUIRE(v == 3);
+
+    set_bit_value(v, b1, 0);
+    REQUIRE(v == 1);
+
+    modify_bits(v, b0, b1);
+    REQUIRE(v == 2);
+
+    toggle_bit(v, b0);
+    REQUIRE(v == 3);
+
+    REQUIRE(is_bit_set(v, b0) == true);
+}
+
+
+TEST_CASE("Bit manipulation: scoped_enum_bitmask()",
+    "[scoped_enum_bitmask]")
+{
+    enum struct msk {
+        b0 = 1,
+        b1 = 2
+    };
+
+    unsigned v = 3;
+
+    clr_bit(v, msk::b0);
+    REQUIRE(v == 2);
+
+    set_bit(v, msk::b0);
+    REQUIRE(v == 3);
+
+    set_bit_value(v, msk::b1, 0);
+    REQUIRE(v == 1);
+
+    modify_bits(v, msk::b0, msk::b1);
+    REQUIRE(v == 2);
+
+    toggle_bit(v, msk::b0);
+    REQUIRE(v == 3);
+
+    REQUIRE(is_bit_set(v, msk::b0) == true);
+}
