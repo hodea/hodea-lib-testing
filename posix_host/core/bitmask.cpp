@@ -8,25 +8,38 @@
 
 using namespace hodea;
 
-TEST_CASE("Bitmask: Bitmask() ", "[Bitmask]")
+TEST_CASE("Bitmask: Right_aligned_mask", "[Right_aligned_mask]")
 {
-    constexpr uint8_t msk = Bitmask<uint8_t>{}.bit(0).bit(2);
-    REQUIRE(msk == 0x5);
-}
+    using namespace helper;
 
-TEST_CASE("Bitmask: bit_pos_to_msk()", "[bit_pos_to_msk]")
-{
-    constexpr uint8_t m8 = bit_to_msk(7);
+    auto m1 = Right_aligned_mask<unsigned, 1>{};
+    REQUIRE(m1 == 0x01U);
 
-    REQUIRE(m8 == 0x80U);
-}
+    constexpr int s = 3;
+    constexpr auto m2 = Right_aligned_mask<unsigned, s>{};
+    REQUIRE(m2 == 0x07U);
 
-TEST_CASE("Bitmask: make_bitmask()", "[make_bitmask]")
-{
+    constexpr auto m3 = Right_aligned_mask<uint8_t, 8>{};
+    REQUIRE(m3 == 0xffU);
+
+    // The following code must case an compile time error as
+    // the requested mask does not fit in the type.
 #if 0
-    constexpr auto m1 = make_bitmask<uint8_t, 1>;
-
-    REQUIRE(m1 == 0x20U);
+    constexpr uint8_t m4 = Right_aligned_mask<uint8_t, 9>{};
+    REQUIRE(m4 == 0xffU);
 #endif
+}
+
+
+TEST_CASE("Bitmask: bitmask()", "[bitmask]")
+{
+    constexpr auto m1 = bitmask<unsigned, 3>(); 
+    REQUIRE(m1 == 0x08U);
+
+    constexpr auto m2 = bitmask<unsigned, 0, 2>(); 
+    REQUIRE(m2 == 0x03U);
+
+    constexpr auto m3 = bitmask<unsigned, 2, 2>(); 
+    REQUIRE(m3 == 0x0CU);
 }
 
