@@ -22,7 +22,6 @@ set(THIRD_PARTY_ROOT_DIR "${PROJECT_ROOT_DIR}/../../third_party")
 
 add_executable(${TARGET_NAME}
     "${CMAKE_SOURCE_DIR}/main.cpp"
-    "${CMAKE_SOURCE_DIR}/bitmask.cpp"
     "${CMAKE_SOURCE_DIR}/bitmanip.cpp"
     "${CMAKE_SOURCE_DIR}/bitfield.cpp"
     "${CMAKE_SOURCE_DIR}/scoped_enum_bitmask.cpp"
