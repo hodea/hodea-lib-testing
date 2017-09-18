@@ -8,6 +8,23 @@
 
 using namespace hodea;
 
+TEST_CASE("Bit manipulation: bit_to_mask()", "[bit_to_mask]")
+{
+    REQUIRE(bit_to_msk(3) == 0x08U);
+}
+
+TEST_CASE("Bit manipulation: bitmask()", "[bitmask]")
+{
+    constexpr auto m1 = bitmask<unsigned>(3); 
+    REQUIRE(m1 == 0x08U);
+
+    constexpr auto m2 = bitmask<unsigned>(0, 2); 
+    REQUIRE(m2 == 0x03U);
+
+    constexpr auto m3 = bitmask<unsigned>(2, 2); 
+    REQUIRE(m3 == 0x0CU);
+}
+
 TEST_CASE("Bit manipulation: clr_bit() ", "[clr_bit]")
 {
     unsigned v = 0xcafeU;
