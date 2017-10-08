@@ -5,7 +5,8 @@
 
 # ---------------------------------------- project specific settings ---
 
-TARGETS := stm32f091 stm32f334
+# TARGETS := stm32f091 stm32f334
+TARGETS := stm32f091
 export BUILD_ROOT_DIR := ./build
 
 # --------------------------------------- derived settings and rules ---
