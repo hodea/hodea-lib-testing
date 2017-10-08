@@ -10,4 +10,11 @@
 #if !defined _HODEA_USER_CONFIG_HPP_
 #define _HODEA_USER_CONFIG_HPP_
 
+#include <hodea/core/cstdint.hpp>
+
+/**
+ * System core clock in [HZ].
+ */
+static constexpr uint32_t config_cpu_sysclk_hz = 16000000;
+
 #endif /*!_HODEA_USER_CONFIG_HPP_ */
