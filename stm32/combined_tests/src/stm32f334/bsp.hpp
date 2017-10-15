@@ -3,7 +3,7 @@
 // See LICENSE file for full details.
 
 /**
- * Board support package stm32f091 nucleos board.
+ * Board support package stm32f334 nucleos board.
  *
  * \author f.hollerer@gmx.net
  */

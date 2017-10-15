@@ -15,6 +15,6 @@
 /**
  * System core clock in [HZ].
  */
-static constexpr uint32_t config_cpu_sysclk_hz = 64000000;
+constexpr uint32_t config_cpu_sysclk_hz = 64000000;
 
 #endif /*!_HODEA_USER_CONFIG_HPP_ */

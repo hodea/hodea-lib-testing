@@ -10,6 +10,7 @@
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>
 #include <hodea/device/hal/hal_device_setup.hpp>
+#include <hodea/device/hal/hal_pin_config.hpp>
 #include "bsp.hpp"
 
 using namespace hodea;
@@ -23,7 +24,12 @@ static void init_peripheral_clocks(void)
     set_bit(
         RCC->AHBENR,
         RCC_AHBENR_GPIOAEN | RCC_AHBENR_GPIOBEN | RCC_AHBENR_GPIOCEN |
-        RCC_AHBENR_GPIODEN | RCC_AHBENR_GPIOFEN | RCC_AHBENR_DMAEN
+        RCC_AHBENR_GPIODEN | RCC_AHBENR_GPIOFEN |
+#if defined RCC_AHBENR_DMA1EN
+        RCC_AHBENR_DMA1EN
+#else
+        RCC_AHBENR_DMAEN
+#endif
         );
 
     // enable clock for USART1 and SPI1
@@ -35,28 +41,6 @@ static void init_peripheral_clocks(void)
 
 /**
  * General Purpose I/O pin configuration.
- *
- * Device Reset values
- * -------------------
- *
- * On reset all pins except PA13/SYS_SWDIO and PA14/SYS_SWCLK are
- * configured as digital input.  PA13 and PA14 are in AF0 mode.
- *
- * GPIOx_MODER
- *      all pins are digital input, except PA13 and PA14
- * GPIOx_OTYPER
- *      all outputs are in push-pull output mode
- * GPIOx_OSPEEDR
- *      all pins set to low speed, except PA14/SYS_SWCLK for which
- *      high speed is enabled
- *      low speed: up to 2 MHz
- * GPIOx_PUBDR
- *      no pull-up / pull-down, except PA13 and PA14 where pull-up is
- *      enabled
- * GPIOx_ODR
- *      all bits cleared
- * GPIOx_AFRL, GPIOx_AFRH
- *      all pins set to AF0 (active if alternate function mode selected)
  *
  * Pin  Name            Dir     AF      Function
  * 1    VBAT
@@ -162,6 +146,79 @@ static void init_peripheral_clocks(void)
 static void init_pins(void)
 {
     init_pins_alternate_function();
+
+    /*
+     * Configure output type register.
+     * PC0 and PC1 must be configured as open drain. All others output
+     * are kept in push/pull mode.
+     */
+    Config_gpio_otype{GPIOC}
+        .pin(0, Gpio_pin_otype::open_drain)
+        .pin(1, Gpio_pin_otype::open_drain)
+        .write();
+
+    /*
+     * Configure mode registers.
+     */
+    Config_gpio_mode{GPIOA}
+        .pin(0, Gpio_pin_mode::input)
+        .pin(1, Gpio_pin_mode::input)
+        .pin(2, Gpio_pin_mode::af)
+        .pin(3, Gpio_pin_mode::af)
+        .pin(4, Gpio_pin_mode::af)
+        .pin(5, Gpio_pin_mode::output)
+        .pin(6, Gpio_pin_mode::af)
+        .pin(7, Gpio_pin_mode::af)
+        .pin(8, Gpio_pin_mode::output)
+        .pin(9, Gpio_pin_mode::af)
+        .pin(10, Gpio_pin_mode::af)
+        .pin(11, Gpio_pin_mode::af)
+        .pin(12, Gpio_pin_mode::af)
+        .pin(13, Gpio_pin_mode::af)
+        .pin(14, Gpio_pin_mode::af)
+        .pin(15, Gpio_pin_mode::input)
+        .write();
+
+    Config_gpio_mode{GPIOB}
+        .pin(0, Gpio_pin_mode::input)
+        .pin(1, Gpio_pin_mode::input)
+        .pin(2, Gpio_pin_mode::input)
+        .pin(3, Gpio_pin_mode::af)
+        .pin(4, Gpio_pin_mode::input)
+        .pin(5, Gpio_pin_mode::af)
+        .pin(6, Gpio_pin_mode::af)
+        .pin(7, Gpio_pin_mode::af)
+        .pin(8, Gpio_pin_mode::input)
+        .pin(9, Gpio_pin_mode::af)
+        .pin(10, Gpio_pin_mode::af)
+        .pin(11, Gpio_pin_mode::af)
+        .pin(12, Gpio_pin_mode::input)
+        .pin(13, Gpio_pin_mode::input)
+        .pin(14, Gpio_pin_mode::af)
+        .pin(15, Gpio_pin_mode::input)
+        .write();
+
+    Config_gpio_mode{GPIOC}
+        .pin(0, Gpio_pin_mode::output)
+        .pin(1, Gpio_pin_mode::output)
+        .pin(2, Gpio_pin_mode::input)
+        .pin(3, Gpio_pin_mode::input)
+        .pin(4, Gpio_pin_mode::input)
+        .pin(5, Gpio_pin_mode::input)
+        .pin(6, Gpio_pin_mode::input)
+        .pin(7, Gpio_pin_mode::input)
+        .pin(8, Gpio_pin_mode::output)
+        .pin(9, Gpio_pin_mode::output)
+        .pin(10, Gpio_pin_mode::output)
+        .pin(11, Gpio_pin_mode::input)
+        .pin(12, Gpio_pin_mode::input)
+        .pin(13, Gpio_pin_mode::input)
+        .pin(14, Gpio_pin_mode::input)
+        .pin(15, Gpio_pin_mode::input)
+        .write();
+
+    Config_gpio_mode{GPIOD}.write();    // all input
+    Config_gpio_mode{GPIOF}.write();    // all input
 }
 
 int main()
