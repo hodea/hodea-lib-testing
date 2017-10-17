@@ -12,9 +12,20 @@
 
 #include <hodea/core/cstdint.hpp>
 
-/**
- * System core clock in [HZ].
- */
-constexpr uint32_t config_cpu_sysclk_hz = 16000000;
+namespace hodea {
+
+ //! System core clock in [Hz].
+constexpr unsigned config_sysclk_hz = 16000000;
+
+//! Cortex system timer clock in [Hz].
+constexpr unsigned config_systick_hz = config_sysclk_hz / 8;
+
+//! APB1 peripheral clocks in [Hz].
+constexpr unsigned config_apb1_pclk_hz = config_sysclk_hz;
+
+//! APB1 timer clocks in [Hz].
+constexpr unsigned config_apb1_tclk_hz = config_sysclk_hz;
+
+} // namespace hodea
 
 #endif /*!_HODEA_USER_CONFIG_HPP_ */

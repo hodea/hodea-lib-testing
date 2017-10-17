@@ -7,11 +7,14 @@
  *
  * \author f.hollerer@gmx.net
  */
+#include <cstdio>
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>
+#include <hodea/core/math.hpp>
 #include <hodea/device/hal/hal_device_setup.hpp>
 #include <hodea/device/hal/hal_pin_config.hpp>
 #include "bsp.hpp"
+#include "retarget.hpp"
 
 using namespace hodea;
 
@@ -225,7 +228,9 @@ int main()
 {
     init_peripheral_clocks();
     init_pins();
-    for (;;)
-        ;
+    retarget_init();
+
+    std::printf("hello, world\n");
+    for (;;) ;
     return 0;
 }

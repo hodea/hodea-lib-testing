@@ -22,6 +22,7 @@ set(CMSIS_ROOT_DIR "${PROJECT_ROOT_DIR}/../../hodea-stm32f3-vpkg/CMSIS")
 
 add_executable(${TARGET_NAME}
     "${CMAKE_SOURCE_DIR}/main.cpp"
+    "${CMAKE_SOURCE_DIR}/retarget.cpp"
     "${CMAKE_SOURCE_DIR}/stm32f334/bsp.cpp"
     "${CMAKE_SOURCE_DIR}/stm32f334/system_stm32f3xx.cpp"
     "${CMAKE_SOURCE_DIR}/stm32f334/gcc/startup_stm32f334x8.s"

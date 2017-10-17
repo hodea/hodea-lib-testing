@@ -29,7 +29,7 @@
 using namespace hodea;
 
 extern "C" uint32_t SystemCoreClock;
-uint32_t SystemCoreClock __attribute__((used)) = config_cpu_sysclk_hz;
+uint32_t SystemCoreClock __attribute__((used)) = config_sysclk_hz;
 
 /**
  * Device specific system configuration called before main is entered.
