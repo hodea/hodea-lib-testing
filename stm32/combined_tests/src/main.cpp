@@ -15,6 +15,7 @@
 #include <hodea/device/hal/hal_pin_config.hpp>
 #include "bsp.hpp"
 #include "retarget.hpp"
+#include "tfw.hpp"
 
 using namespace hodea;
 
@@ -231,6 +232,7 @@ int main()
     retarget_init();
 
     std::printf("hello, world\n");
+    tfw_failed("hallo\n");
     for (;;) ;
     return 0;
 }
