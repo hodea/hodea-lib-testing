@@ -7,7 +7,6 @@
  *
  * \author f.hollerer@gmx.net
  */
-#include <cstdio>
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>
 #include <hodea/core/math.hpp>
@@ -231,8 +230,8 @@ int main()
     init_pins();
     retarget_init();
 
-    std::printf("hello, world\n");
-    tfw_failed("hallo\n");
+    tfw_main();
+
     for (;;) ;
     return 0;
 }
