@@ -21,10 +21,10 @@ TEST_CASE("scoped_enum: or operator", "[scoped_enum_or_operator]")
 {
     unsigned val = 0x0f;
 
-    REQUIRE(is_bit_set(val, Msk::b0 | Msk::b1) == true);
+    REQUIRE(is_bit_set(val, enum_to_underlying(Msk::b0 | Msk::b1)) == true);
 }
 
-TEST_CASE("scoped_enum: to_underlying", "[scoped_enum_to_underlying]")
+TEST_CASE("scoped_enum: enum_to_underlying", "[scoped_enum_to_underlying]")
 {
-    REQUIRE(to_underlying(Msk::b1) == 2);
+    REQUIRE(enum_to_underlying(Msk::b1) == 2);
 }
