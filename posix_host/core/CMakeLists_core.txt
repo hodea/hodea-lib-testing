@@ -30,11 +30,13 @@ add_executable(${TARGET_NAME}
     "${CMAKE_SOURCE_DIR}/uswap.cpp"
     "${CMAKE_SOURCE_DIR}/math.cpp"
     "${CMAKE_SOURCE_DIR}/utils.cpp"
+    "${CMAKE_SOURCE_DIR}/htsc.cpp"
     )
 
 target_include_directories(${TARGET_NAME} PRIVATE
     "${HODEA_ROOT_DIR}"
     "${THIRD_PARTY_ROOT_DIR}"
+    "${CMAKE_SOURCE_DIR}"
     )
 
 # ------------------------------------------------ compiler settings ---

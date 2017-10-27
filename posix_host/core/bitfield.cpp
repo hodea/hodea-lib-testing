@@ -68,8 +68,6 @@ TEST_CASE("Bitfied: fld2val(Bitfield_descriptor)",
     uint64_t u64 = 0xf000000000000000ULL;
     constexpr Bitfield_descriptor<uint64_t> bfd2(62, 0x03);
 
-std::cout << "bfd.msk = " << std::hex << bfd2.msk << std::endl;
-
     REQUIRE(fld2val(u64, bfd2) == 0x03U);
 }
 
