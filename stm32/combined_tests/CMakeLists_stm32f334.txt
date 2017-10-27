@@ -70,7 +70,7 @@ set(CMAKE_CXX_FLAGS "\
     )
 set(CMAKE_EXE_LINKER_FLAGS "\
     --specs=nosys.specs --specs=nano.specs -Xlinker --gc-sections \
-    -T${CMAKE_SOURCE_DIR}/stm32f334/gcc/STM32F334R8Tx_FLASH.ld \
+    -T${CMAKE_SOURCE_DIR}/stm32f334/gcc/stm32f334r8.ld \
     -Xlinker -Map=${TARGET_NAME}.map"
     )
 
