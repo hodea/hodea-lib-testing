@@ -9,6 +9,7 @@
 
 using namespace hodea;
 
+constexpr long clk_hz = htsc::counter_clk_hz;
 
 TEST_CASE("htsc counter clock ", "[htsc_counter_clk]")
 {
@@ -22,33 +23,53 @@ TEST_CASE("htsc counter clock ", "[htsc_counter_clk]")
      * Therefore, we made an assumption on the Linux configuration.
      * This lines need to be changed if our assumption is wrong.
      */
-    long htsc_clk = Htsc_timer::counter_clk_hz;
     long linux_clk = sysconf(_SC_CLK_TCK);
 
-    REQUIRE(htsc_clk == linux_clk);
+    REQUIRE(clk_hz == linux_clk);
 }
 
-TEST_CASE("htsc.elapsed()", "[htsc_elapsed]")
+TEST_CASE("htsc::elapsed()", "[htsc_elapsed]")
 {
-    REQUIRE(htsc.elapsed(0, 0) == 0);
-    REQUIRE(htsc.elapsed(0, 1) == 1);
+    REQUIRE(htsc::elapsed(0, 0) == 0);
+    REQUIRE(htsc::elapsed(0, 1) == 1);
 
-    Htsc_ticks elapsed;
+    htsc::Ticks elapsed;
 
-    elapsed = htsc.elapsed(Htsc_timer::counter_msk, 0);
+    elapsed = htsc::elapsed(htsc::counter_msk, 0);
     REQUIRE(elapsed == 1);
 
-    elapsed = htsc.elapsed(Htsc_timer::counter_msk - 2, 1);
+    elapsed = htsc::elapsed(htsc::counter_msk - 2, 1);
     REQUIRE(elapsed == 4);
 }
 
-TEST_CASE("htsc.is_elapsed()", "[htsc_is_elapsed]")
+TEST_CASE("htsc::is_elapsed()", "[htsc_is_elapsed]")
 {
-    Htsc_ticks t1 = htsc.timestamp();
+    htsc::Ticks t1 = htsc::timestamp();
 
-    REQUIRE(htsc.is_elapsed(t1, Htsc_timer::counter_clk_hz / 10) == false);
+    REQUIRE(htsc::is_elapsed(t1, clk_hz / 10) == false);
     usleep(200000);
-    REQUIRE(htsc.is_elapsed(t1, Htsc_timer::counter_clk_hz / 10) == true);
+    REQUIRE(htsc::is_elapsed(t1, clk_hz / 10) == true);
 }
 
+TEST_CASE("htsc::is_elapsed_repetitive()", "[htsc_is_elapsed_repetitive]")
+{
+    htsc::Ticks ts_start = htsc::timestamp();
+    htsc::Ticks ts_start_moving = ts_start;
+
+    for (int i = 0; i < 3; ++i) {
+        while (!htsc::is_elapsed_repetitive(ts_start_moving,  clk_hz / 10))
+            ;
+    }
+
+    htsc::Ticks ts_end = htsc::timestamp();
+    REQUIRE(htsc::elapsed(ts_start, ts_end) >= (3 * clk_hz / 10));
+}
+
+TEST_CASE("htsc::delay()", "[htsc_delay]")
+{
+    htsc::Ticks ts_start = htsc::timestamp();
+    htsc::delay(clk_hz / 10);
+    htsc::Ticks ts_end = htsc::timestamp();
+    REQUIRE(htsc::elapsed(ts_start, ts_end) >= (clk_hz / 10));
+}
 
