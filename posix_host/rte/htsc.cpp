@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <catch/catch.hpp>
 #include <hodea/core/cstdint.hpp>
-#include <hodea/core/htsc.hpp>
+#include <hodea/rte/htsc.hpp>
 
 using namespace hodea;
 

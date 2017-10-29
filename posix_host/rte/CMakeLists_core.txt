@@ -14,7 +14,7 @@ set(CMAKE_VERBOSE_MAKEFILE false)
 
 # ---------------------------------------- project specific settings ---
 
-set(TARGET_NAME "ts_core")
+set(TARGET_NAME "ts_rte")
 
 set(CMAKE_SOURCE_DIR "${PROJECT_ROOT_DIR}")
 set(HODEA_ROOT_DIR "${PROJECT_ROOT_DIR}/../../hodea-lib")
@@ -22,14 +22,7 @@ set(THIRD_PARTY_ROOT_DIR "${PROJECT_ROOT_DIR}/../../third_party")
 
 add_executable(${TARGET_NAME}
     "${CMAKE_SOURCE_DIR}/main.cpp"
-    "${CMAKE_SOURCE_DIR}/bitmanip.cpp"
-    "${CMAKE_SOURCE_DIR}/bitfield.cpp"
-    "${CMAKE_SOURCE_DIR}/scoped_enum.cpp"
-    "${CMAKE_SOURCE_DIR}/serialization.cpp"
-    "${CMAKE_SOURCE_DIR}/cpu_endian.cpp"
-    "${CMAKE_SOURCE_DIR}/uswap.cpp"
-    "${CMAKE_SOURCE_DIR}/math.cpp"
-    "${CMAKE_SOURCE_DIR}/utils.cpp"
+    "${CMAKE_SOURCE_DIR}/htsc.cpp"
     )
 
 target_include_directories(${TARGET_NAME} PRIVATE
