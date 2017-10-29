@@ -10,7 +10,8 @@
 #if !defined _HODEA_USER_CONFIG_HPP_
 #define _HODEA_USER_CONFIG_HPP_
 
-#include <hodea/core/cstdint.hpp>
+#define HODEA_CONFIG_HTSC_TIME_BASE_INCLUDE \
+    <hodea/device/arm_cortex_m/htsc_systick_time_base.hpp>
 
 namespace hodea {
 

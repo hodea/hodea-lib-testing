@@ -28,6 +28,7 @@ add_executable(${TARGET_NAME}
     "${CMAKE_SOURCE_DIR}/stm32f091/bsp.cpp"
     "${CMAKE_SOURCE_DIR}/stm32f091/system_stm32f0xx.cpp"
     "${CMAKE_SOURCE_DIR}/stm32f091/gcc/startup_stm32f091xc.s"
+    "${HODEA_ROOT_DIR}/hodea/rte/rte_setup.cpp"
     )
 
 target_include_directories(${TARGET_NAME} PRIVATE
