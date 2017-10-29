@@ -73,3 +73,31 @@ TEST_CASE("htsc::delay()", "[htsc_delay]")
     REQUIRE(htsc::elapsed(ts_start, ts_end) >= (clk_hz / 10));
 }
 
+TEST_CASE("htsc::sec_to_ticks()", "[htsc_sec_to_ticks]")
+{
+    constexpr htsc::Ticks ticks = htsc::sec_to_ticks(2);
+
+    REQUIRE(ticks == (clk_hz * 2));
+}
+
+TEST_CASE("htsc::ms_to_ticks()", "[htsc_ms_to_ticks]")
+{
+    constexpr htsc::Ticks ticks = htsc::ms_to_ticks(2000);
+
+    REQUIRE(ticks == (clk_hz * 2));
+}
+
+TEST_CASE("htsc::us_to_ticks()", "[htsc_us_to_ticks]")
+{
+    constexpr htsc::Ticks ticks = htsc::us_to_ticks(2000000);
+
+    REQUIRE(ticks == (clk_hz * 2));
+}
+
+TEST_CASE("htsc::i_us_to_ticks()", "[htsc_i_us_to_ticks]")
+{
+    constexpr htsc::Ticks ticks = htsc::i_us_to_ticks(2000000);
+
+    REQUIRE(ticks == (clk_hz * 2));
+}
+
