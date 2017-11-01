@@ -27,7 +27,7 @@ public:
 
     static void deinit() { }
 
-    static Ticks timestamp()
+    static Ticks now()
     {
         struct tms tms; 
         return times(&tms);

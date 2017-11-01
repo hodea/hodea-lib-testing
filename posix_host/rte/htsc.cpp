@@ -44,7 +44,7 @@ TEST_CASE("htsc::elapsed()", "[htsc_elapsed]")
 
 TEST_CASE("htsc::is_elapsed()", "[htsc_is_elapsed]")
 {
-    htsc::Ticks t1 = htsc::timestamp();
+    htsc::Ticks t1 = htsc::now();
 
     REQUIRE(htsc::is_elapsed(t1, clk_hz / 10) == false);
     usleep(200000);
@@ -53,7 +53,7 @@ TEST_CASE("htsc::is_elapsed()", "[htsc_is_elapsed]")
 
 TEST_CASE("htsc::is_elapsed_repetitive()", "[htsc_is_elapsed_repetitive]")
 {
-    htsc::Ticks ts_start = htsc::timestamp();
+    htsc::Ticks ts_start = htsc::now();
     htsc::Ticks ts_start_moving = ts_start;
 
     for (int i = 0; i < 3; ++i) {
@@ -61,15 +61,15 @@ TEST_CASE("htsc::is_elapsed_repetitive()", "[htsc_is_elapsed_repetitive]")
             ;
     }
 
-    htsc::Ticks ts_end = htsc::timestamp();
+    htsc::Ticks ts_end = htsc::now();
     REQUIRE(htsc::elapsed(ts_start, ts_end) >= (3 * clk_hz / 10));
 }
 
 TEST_CASE("htsc::delay()", "[htsc_delay]")
 {
-    htsc::Ticks ts_start = htsc::timestamp();
+    htsc::Ticks ts_start = htsc::now();
     htsc::delay(clk_hz / 10);
-    htsc::Ticks ts_end = htsc::timestamp();
+    htsc::Ticks ts_end = htsc::now();
     REQUIRE(htsc::elapsed(ts_start, ts_end) >= (clk_hz / 10));
 }
 
