@@ -3,8 +3,8 @@
 // See LICENSE file for full details.
 
 #include <hodea/core/cstdint.hpp>
-#include <hodea/device/hal/hal_device_setup.hpp>
-#include <hodea/device/hal/hal_pin_config.hpp>
+#include <hodea/device/hal/device_setup.hpp>
+#include <hodea/device/hal/pin_config.hpp>
 #include "pin_config_test.hpp"
 
 using namespace hodea;
@@ -107,7 +107,6 @@ static void test_gpio_af()
         .pin(8, Gpio_pin_af::af6)
         .pin(7, Gpio_pin_af::af5)
         .pin(0, Gpio_pin_af::af0).write();
-tfw_info("afr[0] = %08x, afr[1] = %08x\n", gpio.AFR[0], gpio.AFR[1]);
     tfw_assert(gpio.AFR[1] == 0x70000006);
     tfw_assert(gpio.AFR[0] == 0x50000000);
 
@@ -118,7 +117,6 @@ tfw_info("afr[0] = %08x, afr[1] = %08x\n", gpio.AFR[0], gpio.AFR[1]);
         .pin(8, Gpio_pin_af::af6)
         .pin(7, Gpio_pin_af::af5)
         .pin(0, Gpio_pin_af::af0).write();
-tfw_info("afr[0] = %08x, afr[1] = %08x\n", gpio.AFR[0], gpio.AFR[1]);
     tfw_assert(gpio.AFR[1] == 0x7ffffff6);
     tfw_assert(gpio.AFR[0] == 0x5ffffff0);
 }

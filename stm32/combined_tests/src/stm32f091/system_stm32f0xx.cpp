@@ -24,7 +24,7 @@
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>
-#include <hodea/device/hal/hal_device_setup.hpp>
+#include <hodea/device/hal/device_setup.hpp>
 
 using namespace hodea;
 

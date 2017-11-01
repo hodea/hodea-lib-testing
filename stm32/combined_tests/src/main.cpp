@@ -11,9 +11,9 @@
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>
 #include <hodea/core/math.hpp>
-#include <hodea/device/hal/hal_device_setup.hpp>
-#include <hodea/device/hal/hal_pin_config.hpp>
-#include <hodea/rte/rte_setup.hpp>
+#include <hodea/device/hal/device_setup.hpp>
+#include <hodea/device/hal/pin_config.hpp>
+#include <hodea/rte/setup.hpp>
 #include "bsp.hpp"
 #include "retarget.hpp"
 #include "tfw.hpp"

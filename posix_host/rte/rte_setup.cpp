@@ -4,7 +4,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <catch/catch.hpp>
-#include <hodea/rte/rte_setup.hpp>
+#include <hodea/rte/setup.hpp>
 
 using namespace hodea;
 

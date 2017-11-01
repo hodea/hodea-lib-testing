@@ -28,7 +28,7 @@ add_executable(${TARGET_NAME}
     "${CMAKE_SOURCE_DIR}/stm32f091/bsp.cpp"
     "${CMAKE_SOURCE_DIR}/stm32f091/system_stm32f0xx.cpp"
     "${CMAKE_SOURCE_DIR}/stm32f091/gcc/startup_stm32f091xc.s"
-    "${HODEA_ROOT_DIR}/hodea/rte/rte_setup.cpp"
+    "${HODEA_ROOT_DIR}/hodea/rte/setup.cpp"
     )
 
 target_include_directories(${TARGET_NAME} PRIVATE
@@ -71,10 +71,11 @@ set(CMAKE_CXX_FLAGS "\
 # Unfortunately, nano.specs does not support exceptions.
 # We have removed it, but the footprint of the normal newlib is very high.
 # TODO: we have to find a better solution somewhere in future
-#--specs=nosys.specs --specs=nano.specs -Xlinker --gc-sections \
+#    --specs=nosys.specs --specs=nano.specs -Xlinker --gc-sections \
+#    --specs=nosys.specs -Xlinker --gc-sections \
 
 set(CMAKE_EXE_LINKER_FLAGS "\
-    --specs=nosys.specs -Xlinker --gc-sections \
+    --specs=nosys.specs --specs=nano.specs -Xlinker --gc-sections \
     -T${CMAKE_SOURCE_DIR}/stm32f091/gcc/stm32f091rc.ld \
     -Xlinker -Map=${TARGET_NAME}.map"
     )

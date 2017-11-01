@@ -7,7 +7,7 @@
  *
  * \author f.hollerer@gmx.net
  */
-#include <hodea/device/hal/hal_pin_config.hpp>
+#include <hodea/device/hal/pin_config.hpp>
 #include "bsp.hpp"
 
 using namespace hodea;

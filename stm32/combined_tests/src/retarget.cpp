@@ -13,7 +13,7 @@
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>
 #include <hodea/core/math.hpp>
-#include <hodea/device/hal/hal_device_setup.hpp>
+#include <hodea/device/hal/device_setup.hpp>
 #include "retarget.hpp"
 
 using namespace hodea;
