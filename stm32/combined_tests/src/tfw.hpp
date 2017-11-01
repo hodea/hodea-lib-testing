@@ -41,6 +41,6 @@ void tfw_info(const char* fmt, ...);
 /**
  * Test framework main function.
  */
-void tfw_main();
+[[noreturn]] void tfw_main();
 
 #endif /*!_TFW_HPP_ */

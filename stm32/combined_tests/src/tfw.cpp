@@ -9,9 +9,15 @@
 
 #include <cstdio>
 #include <stdarg.h>
+#include <hodea/rte/htsc.hpp>
 #include "tfw.hpp"
 #include "tfw_config.hpp"
-#include "basic_functions/pin_config_test.hpp"
+#include "digio_pins.hpp"
+
+using namespace hodea;
+
+extern Tfw_status pin_config_test(Tfw_status current);
+extern Tfw_status digio_test(Tfw_status current);
 
 struct Test_table_entry {
     bool is_enabled;
@@ -25,6 +31,11 @@ static Test_table_entry tests[] = {
         enable_pin_config_test,
         Tfw_status::not_started,
         pin_config_test
+    },
+    {
+        enable_digio_test,
+        Tfw_status::not_started,
+        digio_test
     }
 
     // looping tests
@@ -74,6 +85,7 @@ static void print_summary()
 
 void tfw_main()
 {
+    htsc::Ticks ts = htsc::now();
     bool again;
     do {
         again = false;
@@ -84,6 +96,15 @@ void tfw_main()
             test.status = test.p_func(test.status);
             again = again || (test.status < Tfw_status::success);
         }
+
+        if (htsc::is_elapsed_repetitive(ts, htsc::ms_to_ticks(200)))
+            run_led.toggle();
+
     } while (again);
     print_summary();
+
+    for (;;) {
+        if (htsc::is_elapsed_repetitive(ts, htsc::ms_to_ticks(200)))
+            run_led.toggle();
+    }
 }

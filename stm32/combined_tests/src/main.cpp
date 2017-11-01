@@ -234,7 +234,5 @@ int main()
     rte_init();
 
     tfw_main();
-
-    for (;;) ;
     return 0;
 }

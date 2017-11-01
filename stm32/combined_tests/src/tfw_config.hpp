@@ -13,5 +13,6 @@
 
 constexpr Tfw_log_level tfw_log_level = Tfw_log_level::info;
 constexpr bool enable_pin_config_test = true;
+constexpr bool enable_digio_test = true;
 
 #endif /*!_TFW_CONFIG_HPP_ */

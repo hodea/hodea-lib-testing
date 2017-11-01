@@ -25,6 +25,7 @@ add_executable(${TARGET_NAME}
     "${CMAKE_SOURCE_DIR}/retarget.cpp"
     "${CMAKE_SOURCE_DIR}/tfw.cpp"
     "${CMAKE_SOURCE_DIR}/basic_functions/pin_config_test.cpp"
+    "${CMAKE_SOURCE_DIR}/basic_functions/digio_test.cpp"
     "${CMAKE_SOURCE_DIR}/stm32f334/bsp.cpp"
     "${CMAKE_SOURCE_DIR}/stm32f334/system_stm32f3xx.cpp"
     "${CMAKE_SOURCE_DIR}/stm32f334/gcc/startup_stm32f334x8.s"

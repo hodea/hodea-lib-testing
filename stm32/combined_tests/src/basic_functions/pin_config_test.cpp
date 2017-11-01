@@ -5,7 +5,7 @@
 #include <hodea/core/cstdint.hpp>
 #include <hodea/device/hal/device_setup.hpp>
 #include <hodea/device/hal/pin_config.hpp>
-#include "pin_config_test.hpp"
+#include "tfw.hpp"
 
 using namespace hodea;
 
@@ -123,6 +123,7 @@ static void test_gpio_af()
 
 Tfw_status pin_config_test(Tfw_status current)
 {
+    tfw_info("Testing pin configuration module.\n");
     try {
         test_gpio_mode();
         test_gpio_otype();
