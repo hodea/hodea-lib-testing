@@ -18,6 +18,7 @@ using namespace hodea;
 
 extern Tfw_status pin_config_test(Tfw_status current);
 extern Tfw_status digio_test(Tfw_status current);
+extern Tfw_status critical_section_test(Tfw_status current);
 
 struct Test_table_entry {
     bool is_enabled;
@@ -36,6 +37,11 @@ static Test_table_entry tests[] = {
         enable_digio_test,
         Tfw_status::not_started,
         digio_test
+    },
+    {
+        enable_critical_section_test,
+        Tfw_status::not_started,
+        critical_section_test
     }
 
     // looping tests
