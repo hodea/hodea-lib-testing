@@ -59,13 +59,13 @@ static void test_digio_loopback()
     tfw_assert(digio_oc_out2.real_pin_value() == 1);
 
     digio_modify_outputs(
-        digio_oc_out1.port(), digio_oc_out1.mask(), digio_oc_out2.mask()
+        digio_oc_out1.device, digio_oc_out1.msk, digio_oc_out2.msk
         );
     tfw_assert(digio_oc_out1.value() == 0);
     tfw_assert(digio_oc_out2.value() == 1);
 
     digio_modify_outputs(
-        digio_oc_out1.port(), digio_oc_out2.mask(), digio_oc_out1.mask()
+        digio_oc_out1.device, digio_oc_out2.msk, digio_oc_out1.msk
         );
     tfw_assert(digio_oc_out1.value() == 1);
     tfw_assert(digio_oc_out2.value() == 0);
