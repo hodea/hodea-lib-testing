@@ -5,5 +5,7 @@ build/
 # ignore Segger Ozone user interface (UI) settings
 *.jdebug.user
 
-# Segger emStudio session files
-*.emSession
+# Keil MDK-ARM auto generated project files
+*.uvmpw.uvgui.*
+*.uvguix.*
+JLinkLog.txt
