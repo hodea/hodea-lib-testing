@@ -14,9 +14,11 @@
 #include <hodea/device/hal/device_setup.hpp>
 #include <hodea/device/hal/pin_config.hpp>
 #include <hodea/rte/setup.hpp>
+#include <hodea/rte/htsc.hpp>
 #include "bsp.hpp"
 #include "retarget.hpp"
 #include "tfw.hpp"
+#include "digio_pins.hpp"
 
 using namespace hodea;
 
@@ -226,6 +228,7 @@ static void init_pins(void)
     Config_gpio_mode{GPIOF}.write();    // all input
 }
 
+extern "C" int stdout_putchar(int ch);
 int main()
 {
     init_peripheral_clocks();
@@ -233,6 +236,13 @@ int main()
     retarget_init();
     rte_init();
 
-    tfw_main();
+//    tfw_main();
+    std::printf("hello, world\n");
+    htsc::Ticks ts = htsc::now();
+    for (;;) {
+        if (htsc::is_elapsed_repetitive(ts, htsc::ms_to_ticks(200))) {
+            run_led.toggle();
+        }
+    }
     return 0;
 }

@@ -29,6 +29,10 @@ void retarget_init()
     set_bit(uart->CR1, USART_CR1_UE);
 }
 
+#if defined __GNUC__
+
+#error "GNUC"
+
 extern "C" int _write (int handle, char *buffer, int size);
 int _write (int handle, char *buffer, int size)
 {
@@ -41,4 +45,34 @@ int _write (int handle, char *buffer, int size)
     }
     return size;
 }
+
+#elif defined __ARMCC_VERSION && (__ARMCC_VERSION >= 6010050)
+
+// #include <stdio.h>
+
+extern "C" {
+
+// __asm(".global __use_no_semihosting\n\t");
+#include <stdio.h>
+
+struct __FILE { int handle; };
+FILE __stdout;
+
+int fputc(int ch, FILE *f)
+{
+    uart->TDR = ch;
+    while (!is_bit_set(uart->ISR, USART_ISR_TXE)) {
+        ;
+    }
+    return ch;
+}
+
+int ferror(FILE *f)
+{
+    return 0;
+}
+
+} // extern "C"
+
+#endif
 
