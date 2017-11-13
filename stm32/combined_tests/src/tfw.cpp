@@ -57,7 +57,6 @@ void tfw_report_failure(const char* file, int line, const char* fmt, ...)
         std::printf("%s:%d: ", file, line);
         std::vprintf(fmt, vl);
         va_end(vl);
-        fflush(stdout);
     }
     throw Tfw_failed();
 }
@@ -69,7 +68,6 @@ void tfw_info(const char* fmt, ...)
         va_start(vl, fmt);
         std::vprintf(fmt, vl);
         va_end(vl);
-        fflush(stdout);
     }
 }
 
@@ -114,3 +112,4 @@ void tfw_main()
             run_led.toggle();
     }
 }
+

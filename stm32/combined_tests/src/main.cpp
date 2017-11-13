@@ -228,7 +228,6 @@ static void init_pins(void)
     Config_gpio_mode{GPIOF}.write();    // all input
 }
 
-extern "C" int stdout_putchar(int ch);
 int main()
 {
     init_peripheral_clocks();
@@ -236,13 +235,7 @@ int main()
     retarget_init();
     rte_init();
 
-//    tfw_main();
-    std::printf("hello, world\n");
-    htsc::Ticks ts = htsc::now();
-    for (;;) {
-        if (htsc::is_elapsed_repetitive(ts, htsc::ms_to_ticks(200))) {
-            run_led.toggle();
-        }
-    }
+    tfw_main();
+
     return 0;
 }

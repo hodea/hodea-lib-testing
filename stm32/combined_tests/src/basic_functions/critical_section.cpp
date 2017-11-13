@@ -24,7 +24,7 @@ static void test_lock_unlock()
     }
 #endif
 
-    tfw_assert(__get_PRIMASK() == 0);
+    tfw_assert(__get_PRIMASK() == 1);
 
 }
 

@@ -48,17 +48,16 @@ int _write (int handle, char *buffer, int size)
 
 #elif defined __ARMCC_VERSION && (__ARMCC_VERSION >= 6010050)
 
-// #include <stdio.h>
+#include <stdio.h>
 
 extern "C" {
 
-// __asm(".global __use_no_semihosting\n\t");
-#include <stdio.h>
+__asm(".global __use_no_semihosting\n\t");
 
 struct __FILE { int handle; };
 FILE __stdout;
 
-int fputc(int ch, FILE *f)
+int sendchar(int ch)
 {
     uart->TDR = ch;
     while (!is_bit_set(uart->ISR, USART_ISR_TXE)) {
@@ -67,9 +66,25 @@ int fputc(int ch, FILE *f)
     return ch;
 }
 
-int ferror(FILE *f)
+int fputc(int ch, FILE* f)
 {
-    return 0;
+    return sendchar(ch);
+}
+
+int ferror(FILE* f)
+{
+    return EOF;
+}
+
+void _ttywrch(int ch)
+{
+    sendchar (ch);
+}
+
+
+void _sys_exit(int return_code)
+{
+  while (1) ;   /* endless loop */
 }
 
 } // extern "C"
