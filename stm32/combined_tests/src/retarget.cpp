@@ -31,8 +31,6 @@ void retarget_init()
 
 #if defined __GNUC__
 
-#error "GNUC"
-
 extern "C" int _write (int handle, char *buffer, int size);
 int _write (int handle, char *buffer, int size)
 {
