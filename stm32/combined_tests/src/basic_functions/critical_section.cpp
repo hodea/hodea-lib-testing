@@ -12,6 +12,34 @@
 
 using namespace hodea;
 
+
+#if defined __ARMCC_VERSION && (__ARMCC_VERSION >= 6010050)
+/*
+ * The actual armclang compiler v6.7 does not provide std::lock_guard (see
+ * support case 710223. Therefore, we have to implement it ourselves.
+ * Hopefully, a future version will provide it.
+ */
+namespace std
+{
+template <class Mutex>
+class lock_guard
+{
+public:
+    typedef Mutex mutex_type;
+
+    explicit lock_guard(mutex_type& m) : m(m) {m.lock();}
+    ~lock_guard() {m.unlock();}
+
+    lock_guard(lock_guard const&) = delete;
+    lock_guard& operator=(lock_guard const&) = delete;
+
+private:
+    Mutex& m;
+};
+} // namespace std
+
+#endif
+
 static void test_lock_unlock()
 {
     Critical_section cs;
