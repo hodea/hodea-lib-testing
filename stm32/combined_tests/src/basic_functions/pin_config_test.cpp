@@ -121,7 +121,7 @@ static void test_gpio_af()
     tfw_assert(gpio.AFR[0] == 0x5ffffff0);
 }
 
-Tfw_status pin_config_test(Tfw_status current)
+Tfw_status pin_config_test(Tfw_status)
 {
     tfw_info("Testing pin configuration module.\n");
     try {

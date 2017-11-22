@@ -54,7 +54,7 @@ static void test_lock_unlock()
 
 }
 
-Tfw_status critical_section_test(Tfw_status current)
+Tfw_status critical_section_test(Tfw_status)
 {
     tfw_info("Testing critical section.\n");
     try {

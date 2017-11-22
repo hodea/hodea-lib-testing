@@ -71,7 +71,7 @@ static void test_digio_loopback()
     tfw_assert(digio_oc_out2.value() == 0);
 }
 
-Tfw_status digio_test(Tfw_status current)
+Tfw_status digio_test(Tfw_status)
 {
     tfw_info("Testing digital input / output module.\n");
     try {

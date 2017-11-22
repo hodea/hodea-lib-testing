@@ -62,11 +62,11 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 set(CMAKE_C_FLAGS "\
-    -g -Wall -ffreestanding -ffunction-sections -fdata-sections \
+    -g -Wall -Wextra -ffreestanding -ffunction-sections -fdata-sections \
     -fno-common -mcpu=cortex-m0 -mthumb -std=c11"
     )
 set(CMAKE_CXX_FLAGS "\
-    -g -Wall -ffreestanding -ffunction-sections -fdata-sections \
+    -g -Wall -Wextra -ffreestanding -ffunction-sections -fdata-sections \
     -fno-common -mcpu=cortex-m0 -mthumb -std=c++11"
     )
 

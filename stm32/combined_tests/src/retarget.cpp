@@ -31,8 +31,8 @@ void retarget_init()
 
 #if defined __GNUC__
 
-extern "C" int _write (int handle, char *buffer, int size);
-int _write (int handle, char *buffer, int size)
+extern "C" int _write (int, char *buffer, int size);
+int _write (int, char *buffer, int size)
 {
     if (buffer == nullptr)
         return -1;
