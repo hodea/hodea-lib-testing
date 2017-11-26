@@ -230,7 +230,7 @@ static void init_pins(void)
 
 #if defined __ARMCC_VERSION && (__ARMCC_VERSION >= 6010050)
 // Build works with -O3, but fails with -O0.
-// This is the workaround proposed in support case 710226:w
+// This is the workaround proposed in support case 710226
 __asm(".global __ARM_use_no_argv\n");
 #endif
 
