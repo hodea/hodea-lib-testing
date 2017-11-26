@@ -18,7 +18,7 @@ MAKEFILE := $(lastword $(MAKEFILE_LIST))
 
 all:
 	for i in $(TARGETS) ; do \
-	    $(MAKE) -f $(MAKEFILE) CURRENT_TARGET=$$i $$i; \
+	    $(MAKE) -f $(MAKEFILE) CURRENT_TARGET=$$i $$i || exit 1; \
 	done
 
 debug:
