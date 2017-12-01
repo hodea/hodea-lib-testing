@@ -1,6 +1,5 @@
-# Copyright (c) 2017, Franz Hollerer. All rights reserved.
-# This code is licensed under the MIT License (MIT).
-# See LICENSE file for full details.
+# Copyright (c) 2017, Franz Hollerer.
+# SPDX-License-Identifier: MIT
 
 # This scrip runs a program which compiled with clang for code coverage
 # analysis and creates a report form generated profiling data.
