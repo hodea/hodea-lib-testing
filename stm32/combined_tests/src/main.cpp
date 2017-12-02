@@ -24,7 +24,7 @@ using namespace hodea;
 /**
  * Turn on clocks for peripherals used in the application.
  */
-static void init_peripheral_clocks(void)
+static void init_peripheral_clocks()
 {
     // enable clocks for all GPIO ports and DMA1
     set_bit(
@@ -149,7 +149,7 @@ static void init_peripheral_clocks(void)
  * 63   VSS
  * 64   VDD
  */
-static void init_pins(void)
+static void init_pins()
 {
     init_pins_alternate_function();
 
