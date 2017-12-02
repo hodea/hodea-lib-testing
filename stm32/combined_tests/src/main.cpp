@@ -12,10 +12,10 @@
 #include <hodea/core/math.hpp>
 #include <hodea/device/hal/device_setup.hpp>
 #include <hodea/device/hal/pin_config.hpp>
+#include <hodea/device/hal/retarget_stdout_uart.hpp>
 #include <hodea/rte/setup.hpp>
 #include <hodea/rte/htsc.hpp>
 #include "bsp.hpp"
-#include "retarget.hpp"
 #include "tfw.hpp"
 #include "digio_pins.hpp"
 
@@ -237,7 +237,7 @@ int main()
 {
     init_peripheral_clocks();
     init_pins();
-    retarget_init();
+    retarget_init(USART2, baud_to_brr(115200));
     rte_init();
     tfw_main();
 
