@@ -6,9 +6,9 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _BSP_HPP_
-#define _BSP_HPP_
+#if !defined BSP_HPP
+#define BSP_HPP
 
 void init_pins_alternate_function();
 
-#endif /*!_BSP_HPP_ */
+#endif /*!BSP_HPP */

@@ -5,8 +5,8 @@
  * Test framework (tfw) to organize tests.
  * \author f.hollerer@gmx.net
  */
-#if !defined _TFW_HPP_
-#define _TFW_HPP_
+#if !defined TFW_HPP
+#define TFW_HPP
 
 enum class Tfw_log_level { none, error, info };
 enum class Tfw_failed;
@@ -42,4 +42,4 @@ void tfw_info(const char* fmt, ...);
  */
 [[noreturn]] void tfw_main();
 
-#endif /*!_TFW_HPP_ */
+#endif /*!TFW_HPP */

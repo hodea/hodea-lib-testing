@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HTSC_USER_TIME_BASE_HPP_
-#define _HTSC_USER_TIME_BASE_HPP_
+#if !defined HTSC_USER_TIME_BASE_HPP
+#define HTSC_USER_TIME_BASE_HPP
 
 #include <limits>
 #include <sys/times.h>
@@ -36,4 +36,4 @@ public:
 
 } // namespace hodea
 
-#endif /*!_HTSC_USER_TIME_BASE_HPP_ */
+#endif /*!HTSC_USER_TIME_BASE_HPP */

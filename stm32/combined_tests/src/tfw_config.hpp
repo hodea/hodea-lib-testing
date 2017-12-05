@@ -5,8 +5,8 @@
  * Test framework (tfw) configuration.
  * \author f.hollerer@gmx.net
  */
-#if !defined _TFW_CONFIG_HPP_
-#define _TFW_CONFIG_HPP_
+#if !defined TFW_CONFIG_HPP
+#define TFW_CONFIG_HPP
 
 #include "tfw.hpp"
 
@@ -15,4 +15,4 @@ constexpr bool enable_pin_config_test = true;
 constexpr bool enable_digio_test = true;
 constexpr bool enable_critical_section_test = true;
 
-#endif /*!_TFW_CONFIG_HPP_ */
+#endif /*!TFW_CONFIG_HPP */

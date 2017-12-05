@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_USER_CONFIG_HPP_
-#define _HODEA_USER_CONFIG_HPP_
+#if !defined HODEA_USER_CONFIG_HPP
+#define HODEA_USER_CONFIG_HPP
 
 #define HODEA_CONFIG_HTSC_TIME_BASE_INCLUDE "htsc_user_time_base.hpp"
 
@@ -16,4 +16,4 @@ namespace hodea {
 
 } // namespace hodea
 
-#endif /*!_HODEA_USER_CONFIG_HPP_ */
+#endif /*!HODEA_USER_CONFIG_HPP */
