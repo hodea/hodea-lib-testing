@@ -88,7 +88,7 @@ static void print_summary()
 
 void tfw_main()
 {
-    htsc::Ticks ts = htsc::now();
+    Htsc::Ticks ts = Htsc::now();
     bool again;
     do {
         again = false;
@@ -100,14 +100,14 @@ void tfw_main()
             again = again || (test.status < Tfw_status::success);
         }
 
-        if (htsc::is_elapsed_repetitive(ts, htsc::ms_to_ticks(200)))
+        if (Htsc::is_elapsed_repetitive(ts, Htsc::ms_to_ticks(200)))
             run_led.toggle();
 
     } while (again);
     print_summary();
 
     for (;;) {
-        if (htsc::is_elapsed_repetitive(ts, htsc::ms_to_ticks(200)))
+        if (Htsc::is_elapsed_repetitive(ts, Htsc::ms_to_ticks(200)))
             run_led.toggle();
     }
 }

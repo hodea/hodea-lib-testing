@@ -9,7 +9,7 @@
 
 using namespace hodea;
 
-constexpr long clk_hz = htsc::counter_clk_hz;
+constexpr long clk_hz = Htsc::counter_clk_hz;
 
 TEST_CASE("htsc counter clock ", "[htsc_counter_clk]")
 {
@@ -28,75 +28,75 @@ TEST_CASE("htsc counter clock ", "[htsc_counter_clk]")
     REQUIRE(clk_hz == linux_clk);
 }
 
-TEST_CASE("htsc::elapsed()", "[htsc_elapsed]")
+TEST_CASE("Htsc::elapsed()", "[htsc_elapsed]")
 {
-    REQUIRE(htsc::elapsed(0, 0) == 0);
-    REQUIRE(htsc::elapsed(0, 1) == 1);
+    REQUIRE(Htsc::elapsed(0, 0) == 0);
+    REQUIRE(Htsc::elapsed(0, 1) == 1);
 
-    htsc::Ticks elapsed;
+    Htsc::Ticks elapsed;
 
-    elapsed = htsc::elapsed(htsc::counter_msk, 0);
+    elapsed = Htsc::elapsed(Htsc::counter_msk, 0);
     REQUIRE(elapsed == 1);
 
-    elapsed = htsc::elapsed(htsc::counter_msk - 2, 1);
+    elapsed = Htsc::elapsed(Htsc::counter_msk - 2, 1);
     REQUIRE(elapsed == 4);
 }
 
-TEST_CASE("htsc::is_elapsed()", "[htsc_is_elapsed]")
+TEST_CASE("Htsc::is_elapsed()", "[htsc_is_elapsed]")
 {
-    htsc::Ticks t1 = htsc::now();
+    Htsc::Ticks t1 = Htsc::now();
 
-    REQUIRE(htsc::is_elapsed(t1, clk_hz / 10) == false);
+    REQUIRE(Htsc::is_elapsed(t1, clk_hz / 10) == false);
     usleep(200000);
-    REQUIRE(htsc::is_elapsed(t1, clk_hz / 10) == true);
+    REQUIRE(Htsc::is_elapsed(t1, clk_hz / 10) == true);
 }
 
-TEST_CASE("htsc::is_elapsed_repetitive()", "[htsc_is_elapsed_repetitive]")
+TEST_CASE("Htsc::is_elapsed_repetitive()", "[htsc_is_elapsed_repetitive]")
 {
-    htsc::Ticks ts_start = htsc::now();
-    htsc::Ticks ts_start_moving = ts_start;
+    Htsc::Ticks ts_start = Htsc::now();
+    Htsc::Ticks ts_start_moving = ts_start;
 
     for (int i = 0; i < 3; ++i) {
-        while (!htsc::is_elapsed_repetitive(ts_start_moving,  clk_hz / 10))
+        while (!Htsc::is_elapsed_repetitive(ts_start_moving,  clk_hz / 10))
             ;
     }
 
-    htsc::Ticks ts_end = htsc::now();
-    REQUIRE(htsc::elapsed(ts_start, ts_end) >= (3 * clk_hz / 10));
+    Htsc::Ticks ts_end = Htsc::now();
+    REQUIRE(Htsc::elapsed(ts_start, ts_end) >= (3 * clk_hz / 10));
 }
 
-TEST_CASE("htsc::delay()", "[htsc_delay]")
+TEST_CASE("Htsc::delay()", "[htsc_delay]")
 {
-    htsc::Ticks ts_start = htsc::now();
-    htsc::delay(clk_hz / 10);
-    htsc::Ticks ts_end = htsc::now();
-    REQUIRE(htsc::elapsed(ts_start, ts_end) >= (clk_hz / 10));
+    Htsc::Ticks ts_start = Htsc::now();
+    Htsc::delay(clk_hz / 10);
+    Htsc::Ticks ts_end = Htsc::now();
+    REQUIRE(Htsc::elapsed(ts_start, ts_end) >= (clk_hz / 10));
 }
 
-TEST_CASE("htsc::sec_to_ticks()", "[htsc_sec_to_ticks]")
+TEST_CASE("Htsc::sec_to_ticks()", "[htsc_sec_to_ticks]")
 {
-    constexpr htsc::Ticks ticks = htsc::sec_to_ticks(2);
+    constexpr Htsc::Ticks ticks = Htsc::sec_to_ticks(2);
 
     REQUIRE(ticks == (clk_hz * 2));
 }
 
-TEST_CASE("htsc::ms_to_ticks()", "[htsc_ms_to_ticks]")
+TEST_CASE("Htsc::ms_to_ticks()", "[htsc_ms_to_ticks]")
 {
-    constexpr htsc::Ticks ticks = htsc::ms_to_ticks(2000);
+    constexpr Htsc::Ticks ticks = Htsc::ms_to_ticks(2000);
 
     REQUIRE(ticks == (clk_hz * 2));
 }
 
-TEST_CASE("htsc::us_to_ticks()", "[htsc_us_to_ticks]")
+TEST_CASE("Htsc::us_to_ticks()", "[htsc_us_to_ticks]")
 {
-    constexpr htsc::Ticks ticks = htsc::us_to_ticks(2000000);
+    constexpr Htsc::Ticks ticks = Htsc::us_to_ticks(2000000);
 
     REQUIRE(ticks == (clk_hz * 2));
 }
 
-TEST_CASE("htsc::i_us_to_ticks()", "[htsc_i_us_to_ticks]")
+TEST_CASE("Htsc::i_us_to_ticks()", "[htsc_i_us_to_ticks]")
 {
-    constexpr htsc::Ticks ticks = htsc::i_us_to_ticks(2000000);
+    constexpr Htsc::Ticks ticks = Htsc::i_us_to_ticks(2000000);
 
     REQUIRE(ticks == (clk_hz * 2));
 }

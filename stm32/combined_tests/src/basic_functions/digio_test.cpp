@@ -24,7 +24,7 @@ static void test_digio_loopback()
 {
     digio_oc_out1.reset();
     digio_oc_out2.reset();
-    htsc::delay(htsc::us_to_ticks(1));
+    Htsc::delay(Htsc::us_to_ticks(1));
     tfw_assert(digio_oc_out1.value() == 0);
     tfw_assert(digio_oc_out1.real_pin_value() == 0);
     tfw_assert(digio_oc_out2.value() == 0);
@@ -33,7 +33,7 @@ static void test_digio_loopback()
 
     digio_oc_out1.set();
     digio_oc_out2.reset();
-    htsc::delay(htsc::us_to_ticks(1));
+    Htsc::delay(Htsc::us_to_ticks(1));
     tfw_assert(digio_oc_out1.value() == 1);
     tfw_assert(digio_oc_out1.real_pin_value() == 0);
     tfw_assert(digio_oc_out2.value() == 0);
@@ -42,7 +42,7 @@ static void test_digio_loopback()
 
     digio_oc_out1.reset();
     digio_oc_out2.set();
-    htsc::delay(htsc::us_to_ticks(1));
+    Htsc::delay(Htsc::us_to_ticks(1));
     tfw_assert(digio_oc_out1.value() == 0);
     tfw_assert(digio_oc_out1.real_pin_value() == 0);
     tfw_assert(digio_oc_out2.value() == 1);
@@ -51,7 +51,7 @@ static void test_digio_loopback()
 
     digio_oc_out1.set();
     digio_oc_out2.set();
-    htsc::delay(htsc::us_to_ticks(1));
+    Htsc::delay(Htsc::us_to_ticks(1));
     tfw_assert(digio_oc_out1.value() == 1);
     tfw_assert(digio_oc_out1.real_pin_value() == 1);
     tfw_assert(digio_oc_out2.value() == 1);
