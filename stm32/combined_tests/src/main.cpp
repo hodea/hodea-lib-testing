@@ -4,7 +4,7 @@
 /**
  * Combined tests for STM32 targets.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #include <cstdio>
 #include <hodea/core/cstdint.hpp>

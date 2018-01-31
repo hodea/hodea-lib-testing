@@ -4,7 +4,7 @@
 /**
  * Board support package stm32f334 nucleos board.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined BSP_HPP
 #define BSP_HPP

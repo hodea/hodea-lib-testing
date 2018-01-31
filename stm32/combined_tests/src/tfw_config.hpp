@@ -3,7 +3,7 @@
 
 /**
  * Test framework (tfw) configuration.
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined TFW_CONFIG_HPP
 #define TFW_CONFIG_HPP

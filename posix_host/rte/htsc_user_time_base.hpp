@@ -4,7 +4,7 @@
 /**
  * User time base for the hodea timestamp counter.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HTSC_USER_TIME_BASE_HPP
 #define HTSC_USER_TIME_BASE_HPP

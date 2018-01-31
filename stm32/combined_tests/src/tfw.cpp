@@ -3,7 +3,7 @@
 
 /**
  * Test framework (tfw) to organize tests.
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 
 #include <cstdio>

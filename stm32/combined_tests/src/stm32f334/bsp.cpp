@@ -4,7 +4,7 @@
 /**
  * Board support package stm32f334 nucleos board.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #include <hodea/device/hal/pin_config.hpp>
 #include "bsp.hpp"
