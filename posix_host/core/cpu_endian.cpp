@@ -10,15 +10,15 @@ using namespace hodea;
 
 TEST_CASE("Cpu endian: is_cpu_le()", "[is_cpu_le]")
 {
-    REQUIRE(is_cpu_le() == HONDEA_IS_CPU_LE);
+    REQUIRE(is_cpu_le() == HODEA_IS_CPU_LE);
 }
 
 TEST_CASE("Cpu endian: is_cpu_be()", "[is_cpu_be]")
 {
-    REQUIRE(is_cpu_be() == HONDEA_IS_CPU_BE);
+    REQUIRE(is_cpu_be() == HODEA_IS_CPU_BE);
 }
 
-#if HONDEA_IS_CPU_LE == true
+#if HODEA_IS_CPU_LE == true
 
 TEST_CASE("Cpu endian: cpu_to_le16()", "[cpu_to_le16]")
 {
